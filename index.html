@@ -3,151 +3,161 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Propuesta de Colaboración Estratégica - Pablo Ahumada</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <meta name="description" content="Portafolio de Pablo Ahumada, experto en SEO, UX y moda digital. Transformo tendencias en estrategias efectivas para marcas de moda.">
+    <meta name="keywords" content="SEO, UX, moda, diseño digital, experiencia de usuario, marketing digital, Pablo Ahumada">
+    <meta name="author" content="Pablo Ahumada">
+    <title>Pablo Ahumada - Maestro de la Moda Digital</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f1f0;
+            color: #333;
+            line-height: 1.6;
         }
-        /* Definiendo una paleta de colores personalizada en Tailwind para reutilizar */
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'brand-primary': '#0891b2', /* Un cian vibrante */
-                        'brand-secondary': '#f97316', /* Naranja cálido */
-                        'brand-dark': '#1e293b', /* Un gris azulado oscuro */
-                        'brand-light': '#f1f5f9', /* Un gris muy claro */
-                    }
-                }
+        .header {
+            background: url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            height: 100vh;
+            color: white;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+        .header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+        h1, h2 {
+            font-family: 'Playfair Display', serif;
+            margin: 0;
+        }
+        h1 {
+            font-size: 3.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+        .nav {
+            background: #e8d7d1;
+            padding: 1rem;
+            text-align: center;
+        }
+        .nav a {
+            color: #333;
+            text-decoration: none;
+            margin: 0 1.5rem;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        .nav a:hover {
+            color: #d32f2f;
+        }
+        .section {
+            padding: 4rem 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: #d32f2f;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background: #b71c1c;
+        }
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #25D366;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+        }
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+        }
+        .whatsapp-btn img {
+            width: 40px;
+            height: 40px;
+        }
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            .nav a {
+                margin: 0 1rem;
+            }
+            .section {
+                padding: 2rem 1rem;
             }
         }
     </style>
 </head>
-<body class="bg-brand-light">
+<body>
+    <header class="header">
+        <div class="header-content">
+            <h1>Pablo Ahumada</h1>
+            <h2>Tejiendo el futuro de la moda digital</h2>
+            <a href="#about" class="btn">Descubre mi historia</a>
+        </div>
+    </header>
 
-    <div class="container mx-auto max-w-4xl my-8 md:my-12 px-4">
-        
-        <!-- Encabezado -->
-        <header class="text-center mb-12">
-            <h1 class="text-3xl md:text-4xl font-bold text-brand-dark mb-2">Una Propuesta de Colaboración</h1>
-            <p class="text-lg text-slate-600">Potenciando los resultados de sus clientes con un foco en interacción y análisis.</p>
-        </header>
+    <nav class="nav">
+        <a href="#about">Sobre mí</a>
+        <a href="#skills">Habilidades</a>
+        <a href="#portfolio">Portafolio</a>
+        <a href="#contact">Contacto</a>
+    </nav>
 
-        <main class="bg-white p-6 md:p-10 rounded-2xl shadow-lg">
+    <section id="about" class="section">
+        <h2>Mi viaje en la moda digital</h2>
+        <p>Desde mis inicios, he transformado pasarelas virtuales en experiencias que cautivan. Cada proyecto es un tejido único: optimizo con SEO para que las marcas brillen en los motores de búsqueda, diseño interfaces que enamoran con UX, y adapto estrategias a la velocidad de las tendencias de moda. Para esta marca, traigo soluciones inmediatas que fusionan estilo y tecnología.</p>
+    </section>
 
-            <!-- Sección de Introducción -->
-            <section class="mb-10">
-                <h2 class="text-2xl font-bold text-brand-primary mb-4 border-l-4 border-brand-primary pl-4">¡Hola, equipo LeytonMedia!</h2>
-                <p class="text-slate-700 leading-relaxed mb-4">Nuestro trabajo juntos durante este primer año con PPR me ha confirmado que hacemos un gran equipo, y me gustaría proponerles una forma de aplicar este modelo de colaboración en otros proyectos donde pueda sumar valor.</p>
-                <p class="text-slate-700 leading-relaxed">La idea es simple: sumar una capa de especialización que se integre a su talento creativo, permitiéndoles enfocarse 100% en lo que mejor hacen: construir marcas y crear contenido de alto impacto.</p>
-            </section>
+    <section id="skills" class="section">
+        <h2>Mis herramientas de creación</h2>
+        <ul>
+            <li><strong>SEO Avanzado</strong>: Posicionamiento orgánico para destacar colecciones de moda.</li>
+            <li><strong>UX/UI</strong>: Diseños intuitivos que elevan la experiencia del cliente.</li>
+            <li><strong>Marketing Digital</strong>: Campañas que conectan con audiencias apasionadas por la moda.</li>
+        </ul>
+    </section>
 
-            <!-- La Propuesta -->
-            <section class="mb-10">
-                <h2 class="text-2xl font-bold text-brand-primary mb-6 border-l-4 border-brand-primary pl-4">Un Socio Especializado en Interacción y Análisis</h2>
-                <div class="bg-cyan-50 border border-cyan-200 p-6 rounded-lg">
-                    <p class="text-brand-dark leading-relaxed font-semibold">Mi especialidad es potenciar el contenido que sus equipos creativos ya producen, enfocándome en la conversación que se genera y los datos que de ella surgen.</p>
-                    <p class="text-slate-700 leading-relaxed mt-2">Les propongo un servicio dedicado a gestionar el ciclo completo de la interacción digital. Mientras sus equipos definen la estrategia y dan vida al contenido, yo me encargo de que cada interacción se convierta en una oportunidad de negocio o aprendizaje.</p>
-                </div>
-            </section>
+    <section id="portfolio" class="section">
+        <h2>Proyectos que inspiran</h2>
+        <p>He moldeado identidades digitales para marcas de moda, desde e-commerce optimizados hasta campañas que desfilan en redes sociales. Mi enfoque asegura resultados medibles desde el primer día, listo para aplicar esta experiencia a tus necesidades.</p>
+    </section>
 
-            <!-- Metodología y Servicios -->
-            <section class="mb-10">
-                <h2 class="text-2xl font-bold text-brand-primary mb-6 border-l-4 border-brand-primary pl-4">Mi Aporte: Tres Pilares de Valor</h2>
-                <div class="grid md:grid-cols-3 gap-6">
-                    <!-- Pilar 1: SAC -->
-                    <div class="bg-slate-100 p-5 rounded-lg transform hover:scale-105 transition-transform duration-300">
-                        <h3 class="font-bold text-lg text-brand-dark mb-2">1. Gestión de Comunidad y SAC</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed">Atención dedicada a comentarios, consultas y reclamos. Mi disponibilidad (lunes a lunes, feriados incluidos) ayuda a mantener una reputación de marca positiva y proactiva para sus clientes.</p>
-                    </div>
-                    <!-- Pilar 2: Leads -->
-                    <div class="bg-slate-100 p-5 rounded-lg transform hover:scale-105 transition-transform duration-300">
-                        <h3 class="font-bold text-lg text-brand-dark mb-2">2. Captura y Gestión de Leads</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed">Un flujo de trabajo para identificar y canalizar oportunidades de venta a los equipos comerciales del cliente, convirtiendo las redes en una fuente de ingresos medible.</p>
-                    </div>
-                    <!-- Pilar 3: Reportería -->
-                    <div class="bg-slate-100 p-5 rounded-lg transform hover:scale-105 transition-transform duration-300">
-                        <h3 class="font-bold text-lg text-brand-dark mb-2">3. Reportería e Inteligencia</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed">Uso de herramientas como <a href="https://sproutsocial.com/" target="_blank" class="font-bold text-brand-primary hover:underline">Sprout Social</a> para generar informes con insights claros, ayudando a refinar la estrategia con datos concretos.</p>
-                    </div>
-                </div>
-            </section>
-            
-            <!-- SECCIÓN DE DATOS ACTUALIZADA -->
-            <section class="mb-10">
-                <h2 class="text-2xl font-bold text-brand-primary mb-6 border-l-4 border-brand-primary pl-4">De Datos Crudos a Inteligencia de Negocio</h2>
-                <p class="text-slate-700 leading-relaxed mb-6">Mi trabajo es transformar miles de interacciones en respuestas claras para cada área del negocio. En lugar de planillas complejas, entrego visualizaciones que ayudan a tomar mejores decisiones.</p>
-                <div class="space-y-6">
-                    <!-- Para Marketing -->
-                    <div class="bg-white border border-slate-200 p-5 rounded-lg flex items-start gap-4">
-                        <div class="flex-shrink-0 bg-sky-100 p-3 rounded-full">
-                            <svg class="w-6 h-6 text-sky-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 1 0 0 15 7.5 7.5 0 0 0 0-15Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.2-5.2" /></svg>
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-brand-dark">Para Marketing</h3>
-                            <p class="text-slate-600 leading-relaxed mt-1">Aporto inteligencia sobre qué contenido resuena más, qué acciones realiza la competencia y cuál es el sentimiento real de la comunidad hacia la marca.</p>
-                        </div>
-                    </div>
-                    <!-- Para Ventas -->
-                    <div class="bg-white border border-slate-200 p-5 rounded-lg flex items-start gap-4">
-                        <div class="flex-shrink-0 bg-orange-100 p-3 rounded-full">
-                           <svg class="w-6 h-6 text-orange-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 0 1 3 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-15c-.621 0-1.125-.504-1.125-1.125V8.25c0-.621.504-1.125 1.125-1.125h.375m15-3-15 0" /></svg>
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-brand-dark">Para Ventas</h3>
-                            <p class="text-slate-600 leading-relaxed mt-1">Creo un puente directo con el equipo comercial al identificar y calificar leads, detallando su origen e intereses. Esta información no solo agiliza el contacto, sino que también sirve para construir bases de datos para email marketing.</p>
-                        </div>
-                    </div>
-                    <!-- Para Clientes -->
-                    <div class="bg-white border border-slate-200 p-5 rounded-lg flex items-start gap-4">
-                        <div class="flex-shrink-0 bg-green-100 p-3 rounded-full">
-                            <svg class="w-6 h-6 text-green-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.482L7 21h4.125c.621 0 1.125-.504 1.125-1.125V20.25Z" /></svg>
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-brand-dark">Para el Área de Clientes</h3>
-                            <p class="text-slate-600 leading-relaxed mt-1">Detecto patrones en los reclamos, entiendo las inquietudes recurrentes y transparento cómo la marca aborda cada problema, convirtiendo quejas en oportunidades de fidelización.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
+    <section id="contact" class="section">
+        <h2>¡Hagamos moda juntos!</h2>
+        <p>Estoy listo para tejer soluciones para tu marca. Contáctame y comencemos a transformar tendencias en éxito.</p>
+    </section>
 
-            <!-- Integración y Flexibilidad -->
-            <section class="mb-10">
-                <h2 class="text-2xl font-bold text-brand-primary mb-6 border-l-4 border-brand-primary pl-4">Un Modelo que Potencia, no Reemplaza</h2>
-                <p class="text-slate-700 leading-relaxed mb-4">Esta propuesta se integra de forma natural. Si sus clientes ya tienen Community Managers, mi rol es ser un apoyo estratégico. Ellos se pueden dedicar a la creatividad y planificación, mientras yo me aseguro de que la interacción y el análisis funcionen a la perfección.</p>
-                <div class="bg-orange-50 border border-orange-200 p-6 rounded-lg">
-                    <h3 class="font-bold text-lg text-orange-800 mb-2">Colaboración Flexible</h3>
-                    <p class="text-orange-700 leading-relaxed">Cada cliente tiene su propio ritmo. Por eso, el modelo es de <strong>presupuesto flexible y escalable</strong>, ajustado al volumen y a las necesidades de cada marca. Así, la solución siempre es rentable y de alto valor.</p>
-                </div>
-            </section>
-
-            <!-- Llamada a la Acción -->
-            <section class="text-center bg-brand-dark p-10 md:p-12 rounded-lg">
-                <h2 class="text-3xl font-bold text-white mb-4">Conversemos</h2>
-                <p class="text-slate-300 text-lg leading-relaxed max-w-2xl mx-auto mb-8">Me encantaría agendar una reunión para mostrarles cómo mi experiencia puede fortalecer la propuesta de valor de LeytonMedia y generar resultados aún más sólidos para sus clientes.</p>
-                <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
-                    <a href="https://wa.me/56978542576" target="_blank" class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-300 inline-flex items-center justify-center w-full sm:w-auto">
-                        <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.8 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
-                        WhatsApp
-                    </a>
-                    <a href="mailto:pablo.ahumada.sr@gmail.com" class="bg-sky-600 hover:bg-sky-700 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-300 inline-flex items-center justify-center w-full sm:w-auto">
-                         <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor"><path d="M48 64C21.5 64 0 85.5 0 112v288c0 26.5 21.5 48 48 48h416c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48H48zm0 32h416c8.8 0 16 7.2 16 16v31.8l-216 144-216-144V112c0-8.8 7.2-16 16-16zm0 320V175.4l208.4 138.9c2.4 1.6 5.2 2.5 8 2.5s5.6-.9 8-2.5L464 175.4V400c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16z"/></svg>
-                        Email
-                    </a>
-                </div>
-            </section>
-
-        </main>
-
-        <footer class="text-center mt-10">
-            <p class="text-sm text-slate-500">Pablo Ahumada - Especialista en Gestión de Interacción y Análisis Digital</p>
-        </footer>
-
-    </div>
-
+    <a href="https://wa.me/+56978542576?text=¡Hola! Quiero hablar sobre moda digital." class="whatsapp-btn" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Icon">
+    </a>
 </body>
 </html>
