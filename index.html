@@ -8,22 +8,22 @@
     <meta name="author" content="Pablo Ahumada">
     <title>La moda también se mide: visibilidad, conexión y estrategia</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Poppins', sans-serif, fallback;
             margin: 0;
             padding: 0;
-            background-color: #FFB3CB;
+            background-color: #FFFFFF;
             color: #000000;
             line-height: 1.6;
         }
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
-
         .header {
             background: url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
             color: #FFFFFF;
             text-align: center;
             padding: 4rem 1rem;
             position: relative;
+            min-height: 50vh;
         }
         .header::after {
             content: '';
@@ -53,11 +53,11 @@
             max-width: 900px;
             margin: 0 auto;
             padding: 3rem 1rem;
-            background: #FFFFFF;
+            background: #F5F5F5;
             margin-bottom: 1rem;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            opacity: 0;
-            transform: translateY(20px);
+            opacity: 1;
+            transform: translateY(0);
             transition: opacity 0.6s ease, transform 0.6s ease;
         }
         .section.active {
@@ -102,13 +102,41 @@
             display: inline-block;
             margin: 0.5rem;
             padding: 1rem;
-            background: #F9F9F9;
+            background: #FFFFFF;
             border-radius: 5px;
             transition: transform 0.3s, box-shadow 0.3s;
         }
         .skill-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        .workflow {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .workflow-step {
+            flex: 1;
+            min-width: 150px;
+            background: #FFFFFF;
+            padding: 1rem;
+            border-radius: 5px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .workflow-step.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .workflow-arrow {
+            font-size: 2rem;
+            color: #E91E63;
+            align-self: center;
         }
         .whatsapp-btn {
             position: fixed;
@@ -145,33 +173,6 @@
         .linkedin-btn:hover {
             background: #C2185B;
         }
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 2000;
-        }
-        .modal-content {
-            background: #FFFFFF;
-            margin: 15% auto;
-            padding: 2rem;
-            width: 90%;
-            max-width: 500px;
-            border-radius: 5px;
-            position: relative;
-        }
-        .close {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #000000;
-        }
         @media (max-width: 768px) {
             h1 {
                 font-size: 2rem;
@@ -181,6 +182,13 @@
             }
             .section {
                 padding: 2rem 1rem;
+            }
+            .workflow {
+                flex-direction: column;
+                align-items: center;
+            }
+            .workflow-arrow {
+                display: none;
             }
             .whatsapp-btn {
                 width: 50px;
@@ -192,9 +200,6 @@
                 width: 30px;
                 height: 30px;
             }
-            .modal-content {
-                margin: 20% auto;
-            }
         }
     </style>
 </head>
@@ -203,42 +208,62 @@
         <div class="header-content">
             <h1>La moda también se mide: visibilidad, conexión y estrategia</h1>
             <h2>Por Pablo Ahumada</h2>
-            <p>Una marca no solo debe vestirse bien. También debe verse bien. Y eso implica transmitir confianza, cercanía y coherencia en cada punto de contacto con su comunidad.</p>
+            <p>Una marca no solo debe vestirse bien. También debe verse y sentirse bien. Y en un universo tan competitivo como el de Victoria’s Secret, eso implica más que estética: requiere confianza, cercanía y coherencia en cada interacción.</p>
             <a href="#contact" class="btn">Contáctame ahora</a>
         </div>
     </header>
 
-    <section class="section" id="enfoque">
-        <h2>Mi enfoque</h2>
-        <p>Profesional con más de 15 años de experiencia en marketing digital, SAC y análisis de performance. He trabajado con marcas como Coseche, Portillo y Punta Pacífica Realty, optimizando la relación entre marcas y audiencias desde la estrategia, no solo desde lo visual.</p>
-        <div class="counter" id="experience-counter">0</div>
-        <a href="https://www.linkedin.com/in/pabloahumada?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="btn linkedin-btn" target="_blank">Ver CV completo en LinkedIn</a>
+    <section class="section" id="que-ofrezco">
+        <h2>¿Qué ofrezco?</h2>
+        <p>Transformo la percepción de tu marca con estrategia y precisión. Desde el análisis hasta el SAC, todo lo que hago apunta a fortalecer esa sensación de elegancia, cercanía y poder que la audiencia espera sentir al interactuar con una marca de lujo.</p>
+        <ul>
+            <li>Visibilidad basada en datos reales.</li>
+            <li>Conexiones auténticas con tu comunidad.</li>
+            <li>Reputación sólida que construye confianza.</li>
+        </ul>
+        <p>Todo gestionado con herramientas profesionales y una visión estratégica de cada interacción.</p>
     </section>
 
-    <section class="section" id="no-hago">
-        <h2>¿Qué NO hago?</h2>
-        <p>No genero contenido creativo ni cubro eventos. Mi rol es estratégico: enfocado en análisis, SAC y optimización de la reputación digital.</p>
-        <div class="highlight-box">
-            <p><strong>Beneficios de dividir funciones entre roles:</strong></p>
-            <ul>
-                <li>Especialización en cada área.</li>
-                <li>Visión objetiva y basada en datos.</li>
-                <li>Flujo de trabajo más eficiente y coordinado.</li>
-            </ul>
+    <section class="section" id="quien-soy">
+        <h2>¿Quién soy?</h2>
+        <img src="https://media.licdn.com/dms/image/v2/D4D03AQGKI6YtHuHIhw/profile-displayphoto-crop_800_800/B4DZfxO0GcGYAM-/0/1752098883775?e=1757548800&v=beta&t=TgMmwb2T3YN-i9V_u5qkTARteXbMEerrGjoIgmiXYfc" alt="Pablo Ahumada" style="width: 150px; border-radius: 50%; margin-bottom: 1rem;">
+        <p>Soy Pablo Ahumada, publicista con más de 15 años de experiencia en social media y marketing digital. He colaborado con marcas como General Motors, Americar, Punta Pacífica Realty y firmas reconocidas en consumo masivo como Alto del Carmen, Brooks, Derco, así como la startup Time Jobs.</p>
+        <p>Me especializo en:</p>
+        <ul>
+            <li>Análisis de datos y performance.</li>
+            <li>Gestión del SAC.</li>
+            <li>Estrategias de reputación digital.</li>
+        </ul>
+        <p>Mi trabajo busca alinear cada mensaje con la identidad de marca y convertir los datos en decisiones que sumen valor.</p>
+        <a href="https://www.linkedin.com/in/pabloahumada?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="btn linkedin-btn" target="_blank">Ver mi perfil completo en LinkedIn</a>
+    </section>
+
+    <section class="section" id="como-trabajo">
+        <h2>Cómo trabajo</h2>
+        <p>Gestiono el SAC de forma ágil y ordenada:</p>
+        <div class="workflow" id="workflow">
+            <div class="workflow-step">Capturo cada mensaje entrante</div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-step">Respondo con criterio y etiquetado estratégico</div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-step">Derivo oportunidades comerciales a ventas</div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-step">Derivo reclamos a servicio al cliente</div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-step">Genero reportes con insights accionables</div>
         </div>
+        <p>Este método convierte cada interacción en una oportunidad de optimización, cuidando la experiencia con el mismo detalle con que se cuida una pasarela.</p>
     </section>
 
-    <section class="section" id="si-hago">
-        <h2>¿Qué sí hago?</h2>
-        <div class="skill-card">Gestión de SAC, incluyendo días feriados.</div>
-        <div class="skill-card">Seguimiento de leads, reclamos y patrones de comportamiento.</div>
-        <div class="skill-card">Análisis de performance: formatos, tiempos y respuesta.</div>
-        <div class="skill-card">Elaboración de reportes para equipos creativos y directivos.</div>
-        <div class="skill-card">Benchmarking competitivo.</div>
+    <section class="section" id="modalidad">
+        <h2>Mi modalidad</h2>
+        <p>Trabajo de forma freelance y 100% remota, disponible de lunes a lunes, incluidos feriados. Mientras el Community Manager viste la marca con creatividad y cubre eventos, yo mantengo su esencia cuidada y su reputación impecable.</p>
+        <p>Tú das el estilo. Yo aseguro el rendimiento. Juntos, hacemos que la marca no solo se vea bien, sino que irradie confianza.</p>
     </section>
 
     <section class="section" id="herramientas">
-        <h2>Sprout Social: precisión, análisis y eficiencia</h2>
+        <h2>Herramientas</h2>
+        <p>Sprout Social: precisión, análisis y eficiencia</p>
         <ul>
             <li>Etiquetado de campañas y productos.</li>
             <li>Métricas de engagement por impresión y alcance orgánico.</li>
@@ -247,41 +272,18 @@
         </ul>
     </section>
 
-    <section class="section" id="modalidad">
-        <h2>Modalidad de trabajo</h2>
-        <ul>
-            <li>Disponible lunes a lunes, incluyendo feriados.</li>
-            <li>Trabajo freelance 100% remoto.</li>
-            <li>Reportes periódicos y foco en resultados medibles.</li>
-        </ul>
-    </section>
-
     <section class="section" id="victoria">
         <h2>¿Por qué esto importa para Victoria's Secret?</h2>
         <p>Victoria’s Secret es más que moda: es actitud. Y esa actitud se vive, comenta y transmite cada día en redes sociales.</p>
         <p>Mi misión: que la marca no solo se vea bien. Que también se sienta bien para quien la sigue y confía en ella. La comunidad no se improvisa: se construye con estrategia, empatía y datos.</p>
-        <a href="#contact" class="btn">Hablemos de tu marca</a>
+        <a href="https://wa.me/+56978542576?text=¡Hola! Quiero hablar sobre mi perfil para Victoria's Secret." class="btn" target="_blank">Contáctame por WhatsApp</a>
     </section>
 
     <a href="https://wa.me/+56978542576?text=¡Hola! Quiero hablar sobre mi perfil para Victoria's Secret." class="whatsapp-btn" target="_blank">
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Icon">
     </a>
 
-    <div id="contactModal" class="modal">
-        <div class="modal-content">
-            <span class="close">×</span>
-            <h2>Contáctame</h2>
-            <form>
-                <input type="text" placeholder="Tu nombre" required>
-                <input type="email" placeholder="Tu email" required>
-                <textarea placeholder="Tu mensaje" required></textarea>
-                <button type="submit" class="btn">Enviar</button>
-            </form>
-        </div>
-    </div>
-
     <script>
-        // Animaciones al hacer scroll
         window.addEventListener('scroll', () => {
             const sections = document.querySelectorAll('.section');
             sections.forEach(section => {
@@ -291,9 +293,18 @@
                     section.classList.add('active');
                 }
             });
+
+            const workflowSteps = document.querySelectorAll('.workflow-step');
+            workflowSteps.forEach((step, index) => {
+                const stepTop = step.getBoundingClientRect().top;
+                if (stepTop < windowHeight - 100) {
+                    setTimeout(() => {
+                        step.classList.add('active');
+                    }, index * 500);
+                }
+            });
         });
 
-        // Contador de experiencia
         const counter = document.getElementById('experience-counter');
         let count = 0;
         const target = 15;
@@ -306,27 +317,6 @@
                 clearInterval(interval);
             }
         }, speed);
-
-        // Modal de contacto
-        const modal = document.getElementById('contactModal');
-        const btns = document.querySelectorAll('.btn');
-        const span = document.querySelector('.close');
-
-        btns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                modal.style.display = 'block';
-            });
-        });
-
-        span.addEventListener('click', () => {
-            modal.style.display = 'none';
-        });
-
-        window.addEventListener('click', (event) => {
-            if (event.target == modal) {
-                modal.style.display = 'none';
-            }
-        });
     </script>
 </body>
 </html>
