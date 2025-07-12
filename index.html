@@ -1,163 +1,73 @@
-<!DOCTYPE html>
-<html lang="es">
+<!DOCTYPE html><html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portafolio de Pablo Ahumada, experto en SEO, UX y moda digital. Transformo tendencias en estrategias efectivas para marcas de moda.">
-    <meta name="keywords" content="SEO, UX, moda, diseño digital, experiencia de usuario, marketing digital, Pablo Ahumada">
-    <meta name="author" content="Pablo Ahumada">
-    <title>Pablo Ahumada - Maestro de la Moda Digital</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Open Sans', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f9f1f0;
-            color: #333;
-            line-height: 1.6;
-        }
-        .header {
-            background: url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
-            height: 100vh;
-            color: white;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            position: relative;
-        }
-        .header::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-        }
-        .header-content {
-            position: relative;
-            z-index: 1;
-        }
-        h1, h2 {
-            font-family: 'Playfair Display', serif;
-            margin: 0;
-        }
-        h1 {
-            font-size: 3.5rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-        }
-        .nav {
-            background: #e8d7d1;
-            padding: 1rem;
-            text-align: center;
-        }
-        .nav a {
-            color: #333;
-            text-decoration: none;
-            margin: 0 1.5rem;
-            font-weight: 600;
-            transition: color 0.3s;
-        }
-        .nav a:hover {
-            color: #d32f2f;
-        }
-        .section {
-            padding: 4rem 2rem;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        .btn {
-            display: inline-block;
-            padding: 0.75rem 1.5rem;
-            background: #d32f2f;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background 0.3s;
-        }
-        .btn:hover {
-            background: #b71c1c;
-        }
-        .whatsapp-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #25D366;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s;
-        }
-        .whatsapp-btn:hover {
-            transform: scale(1.1);
-        }
-        .whatsapp-btn img {
-            width: 40px;
-            height: 40px;
-        }
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
-            }
-            .nav a {
-                margin: 0 1rem;
-            }
-            .section {
-                padding: 2rem 1rem;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pablo Ahumada - Análisis & SAC para Moda</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f8f8;
+      color: #333;
+      line-height: 1.6;
+    }
+    header {
+      background-color: #000;
+      color: #fff;
+      padding: 30px 20px;
+      text-align: center;
+    }
+    main {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    h1, h2, h3 {
+      color: #000;
+    }
+    a {
+      color: #d63384;
+      text-decoration: none;
+    }
+    .section {
+      margin-bottom: 40px;
+    }
+    ul {
+      padding-left: 20px;
+    }
+    .highlight {
+      background: #eee;
+      padding: 10px;
+      border-left: 4px solid #d63384;
+    }
+    .fixed-whatsapp {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25D366;
+      color: white;
+      border-radius: 50%;
+      padding: 15px 18px;
+      font-size: 20px;
+      text-decoration: none;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      z-index: 999;
+    }
+    .fixed-whatsapp:hover {
+      background-color: #1ebe5b;
+    }
+  </style>
 </head>
 <body>
-    <header class="header">
-        <div class="header-content">
-            <h1>Pablo Ahumada</h1>
-            <h2>Tejiendo el futuro de la moda digital</h2>
-            <a href="#about" class="btn">Descubre mi historia</a>
-        </div>
-    </header>
+  <header>
+    <h1>La moda también se mide: visibilidad, conexión y estrategia</h1>
+    <p>Por Pablo Ahumada</p>
+  </header>  <main>
+    <section class="section">
+      <p><strong>Una marca no solo debe vestirse bien. También debe verse bien.</strong> Y eso implica transmitir confianza, cercanía y coherencia en cada punto de contacto con su comunidad.</p>
+    </section><section class="section">
+  <h2>Mi enfoque</h2>
+  <p>Profesional con más de 10 años de experiencia en marketing digital, SAC y análisis de performance. He trabajado con marcas como Coseche, Portillo y Punta Pacífica Realty, optimizando la relación entre marcas y audiencias desde la estrategia, no solo desde lo visual.</p>
+  <p>📎 <a href="https://www.linkedin.com/in/pabloahumadac/" target="_blank">Ver CV completo en LinkedIn</a
 
-    <nav class="nav">
-        <a href="#about">Sobre mí</a>
-        <a href="#skills">Habilidades</a>
-        <a href="#portfolio">Portafolio</a>
-        <a href="#contact">Contacto</a>
-    </nav>
-
-    <section id="about" class="section">
-        <h2>Mi viaje en la moda digital</h2>
-        <p>Desde mis inicios, he transformado pasarelas virtuales en experiencias que cautivan. Cada proyecto es un tejido único: optimizo con SEO para que las marcas brillen en los motores de búsqueda, diseño interfaces que enamoran con UX, y adapto estrategias a la velocidad de las tendencias de moda. Para esta marca, traigo soluciones inmediatas que fusionan estilo y tecnología.</p>
-    </section>
-
-    <section id="skills" class="section">
-        <h2>Mis herramientas de creación</h2>
-        <ul>
-            <li><strong>SEO Avanzado</strong>: Posicionamiento orgánico para destacar colecciones de moda.</li>
-            <li><strong>UX/UI</strong>: Diseños intuitivos que elevan la experiencia del cliente.</li>
-            <li><strong>Marketing Digital</strong>: Campañas que conectan con audiencias apasionadas por la moda.</li>
-        </ul>
-    </section>
-
-    <section id="portfolio" class="section">
-        <h2>Proyectos que inspiran</h2>
-        <p>He moldeado identidades digitales para marcas de moda, desde e-commerce optimizados hasta campañas que desfilan en redes sociales. Mi enfoque asegura resultados medibles desde el primer día, listo para aplicar esta experiencia a tus necesidades.</p>
-    </section>
-
-    <section id="contact" class="section">
-        <h2>¡Hagamos moda juntos!</h2>
-        <p>Estoy listo para tejer soluciones para tu marca. Contáctame y comencemos a transformar tendencias en éxito.</p>
-    </section>
-
-    <a href="https://wa.me/+56978542576?text=¡Hola! Quiero hablar sobre moda digital." class="whatsapp-btn" target="_blank">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Icon">
-    </a>
-</body>
-</html>
