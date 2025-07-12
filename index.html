@@ -12,15 +12,15 @@
             font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f5f5f5;
-            color: #333;
+            background-color: #FFB3CB;
+            color: #000000;
             line-height: 1.6;
         }
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
         .header {
             background: url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
-            color: white;
+            color: #FFFFFF;
             text-align: center;
             padding: 4rem 1rem;
             position: relative;
@@ -53,27 +53,34 @@
             max-width: 900px;
             margin: 0 auto;
             padding: 3rem 1rem;
-            background: white;
+            background: #FFFFFF;
             margin-bottom: 1rem;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .section.active {
+            opacity: 1;
+            transform: translateY(0);
         }
         .btn {
             display: inline-block;
             padding: 0.75rem 1.5rem;
-            background: #e91e63;
-            color: white;
+            background: #E91E63;
+            color: #FFFFFF;
             text-decoration: none;
             border-radius: 5px;
             font-weight: 600;
             transition: background 0.3s;
         }
         .btn:hover {
-            background: #c2185b;
+            background: #C2185B;
         }
         .highlight-box {
-            background: #fce4ec;
+            background: #FFE4EC;
             padding: 1.5rem;
-            border-left: 4px solid #e91e63;
+            border-left: 4px solid #E91E63;
             margin: 1rem 0;
         }
         ul {
@@ -87,16 +94,28 @@
         }
         ul li::before {
             content: '★';
-            color: #e91e63;
+            color: #E91E63;
             position: absolute;
             left: 0;
+        }
+        .skill-card {
+            display: inline-block;
+            margin: 0.5rem;
+            padding: 1rem;
+            background: #F9F9F9;
+            border-radius: 5px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
         .whatsapp-btn {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background: #25d366;
-            color: white;
+            background: #25D366;
+            color: #FFFFFF;
             border: none;
             border-radius: 50%;
             width: 60px;
@@ -114,6 +133,41 @@
         .whatsapp-btn img {
             width: 40px;
             height: 40px;
+        }
+        .linkedin-btn {
+            color: #0077B5;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .linkedin-btn:hover {
+            color: #005F91;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+        }
+        .modal-content {
+            background: #FFFFFF;
+            margin: 15% auto;
+            padding: 2rem;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 5px;
+            position: relative;
+        }
+        .close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #000000;
         }
         @media (max-width: 768px) {
             h1 {
@@ -135,6 +189,9 @@
                 width: 30px;
                 height: 30px;
             }
+            .modal-content {
+                margin: 20% auto;
+            }
         }
     </style>
 </head>
@@ -144,16 +201,18 @@
             <h1>La moda también se mide: visibilidad, conexión y estrategia</h1>
             <h2>Por Pablo Ahumada</h2>
             <p>Una marca no solo debe vestirse bien. También debe verse bien. Y eso implica transmitir confianza, cercanía y coherencia en cada punto de contacto con su comunidad.</p>
+            <a href="#contact" class="btn">Contáctame ahora</a>
         </div>
     </header>
 
-    <section class="section">
+    <section class="section" id="enfoque">
         <h2>Mi enfoque</h2>
-        <p>Profesional con más de 10 años de experiencia en marketing digital, SAC y análisis de performance. He trabajado con marcas como Coseche, Portillo y Punta Pacífica Realty, optimizando la relación entre marcas y audiencias desde la estrategia, no solo desde lo visual.</p>
-        <a href="https://www.linkedin.com/in/pabloahumadac/" class="btn" target="_blank">Ver CV completo en LinkedIn</a>
+        <p>Profesional con más de 15 años de experiencia en marketing digital, SAC y análisis de performance. He trabajado con marcas como Coseche, Portillo y Punta Pacífica Realty, optimizando la relación entre marcas y audiencias desde la estrategia, no solo desde lo visual.</p>
+        <div class="counter" id="experience-counter">0+</div>
+        <a href="https://www.linkedin.com/in/pabloahumada?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="btn linkedin-btn" target="_blank">Ver CV completo en LinkedIn</a>
     </section>
 
-    <section class="section">
+    <section class="section" id="no-hago">
         <h2>¿Qué NO hago?</h2>
         <p>No genero contenido creativo ni cubro eventos. Mi rol es estratégico: enfocado en análisis, SAC y optimización de la reputación digital.</p>
         <div class="highlight-box">
@@ -166,18 +225,16 @@
         </div>
     </section>
 
-    <section class="section">
+    <section class="section" id="si-hago">
         <h2>¿Qué sí hago?</h2>
-        <ul>
-            <li>Gestión de SAC, incluyendo días feriados.</li>
-            <li>Seguimiento de leads, reclamos y patrones de comportamiento.</li>
-            <li>Análisis de performance: formatos, tiempos y respuesta.</li>
-            <li>Elaboración de reportes para equipos creativos y directivos.</li>
-            <li>Benchmarking competitivo.</li>
-        </ul>
+        <div class="skill-card">Gestión de SAC, incluyendo días feriados.</div>
+        <div class="skill-card">Seguimiento de leads, reclamos y patrones de comportamiento.</div>
+        <div class="skill-card">Análisis de performance: formatos, tiempos y respuesta.</div>
+        <div class="skill-card">Elaboración de reportes para equipos creativos y directivos.</div>
+        <div class="skill-card">Benchmarking competitivo.</div>
     </section>
 
-    <section class="section">
+    <section class="section" id="herramientas">
         <h2>Sprout Social: precisión, análisis y eficiencia</h2>
         <ul>
             <li>Etiquetado de campañas y productos.</li>
@@ -187,7 +244,7 @@
         </ul>
     </section>
 
-    <section class="section">
+    <section class="section" id="modalidad">
         <h2>Modalidad de trabajo</h2>
         <ul>
             <li>Disponible lunes a lunes, incluyendo feriados.</li>
@@ -196,14 +253,77 @@
         </ul>
     </section>
 
-    <section class="section">
+    <section class="section" id="victoria">
         <h2>¿Por qué esto importa para Victoria's Secret?</h2>
         <p>Victoria’s Secret es más que moda: es actitud. Y esa actitud se vive, comenta y transmite cada día en redes sociales.</p>
         <p>Mi misión: que la marca no solo se vea bien. Que también se sienta bien para quien la sigue y confía en ella. La comunidad no se improvisa: se construye con estrategia, empatía y datos.</p>
+        <a href="#contact" class="btn">Hablemos de tu marca</a>
     </section>
 
     <a href="https://wa.me/+56978542576?text=¡Hola! Quiero hablar sobre mi perfil para Victoria's Secret." class="whatsapp-btn" target="_blank">
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Icon">
     </a>
+
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <span class="close">×</span>
+            <h2>Contáctame</h2>
+            <form>
+                <input type="text" placeholder="Tu nombre" required>
+                <input type="email" placeholder="Tu email" required>
+                <textarea placeholder="Tu mensaje" required></textarea>
+                <button type="submit" class="btn">Enviar</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Animaciones al hacer scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                if (sectionTop < windowHeight - 100) {
+                    section.classList.add('active');
+                }
+            });
+        });
+
+        // Contador de experiencia
+        const counter = document.getElementById('experience-counter');
+        let count = 0;
+        const target = 15;
+        const speed = 100;
+        const interval = setInterval(() => {
+            if (count <= target) {
+                counter.textContent = count + '+';
+                count++;
+            } else {
+                clearInterval(interval);
+            }
+        }, speed);
+
+        // Modal de contacto
+        const modal = document.getElementById('contactModal');
+        const btns = document.querySelectorAll('.btn');
+        const span = document.querySelector('.close');
+
+        btns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                modal.style.display = 'block';
+            });
+        });
+
+        span.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (event) => {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        });
+    </script>
 </body>
 </html>
