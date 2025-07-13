@@ -173,6 +173,34 @@
         .linkedin-btn:hover {
             background: #C2185B;
         }
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background: #FFFFFF;
+        }
+        .data-table th, .data-table td {
+            border: 1px solid #E91E63;
+            padding: 0.5rem;
+            text-align: left;
+        }
+        .data-table th {
+            background-color: #E91E63;
+            color: #FFFFFF;
+        }
+        .data-table tr:nth-child(even) {
+            background-color: #F5F5F5;
+        }
+        .data-table tr:hover {
+            background-color: #FFE4EC;
+        }
+        .graph-img {
+            max-width: 100%;
+            height: auto;
+            margin: 1rem 0;
+            border: 2px solid #E91E63;
+            border-radius: 5px;
+        }
         @media (max-width: 768px) {
             h1 {
                 font-size: 2rem;
@@ -253,6 +281,30 @@
             <div class="workflow-step">Genero reportes con insights accionables</div>
         </div>
         <p>Este método convierte cada interacción en una oportunidad de optimización, cuidando la experiencia con el mismo detalle con que se cuida una pasarela.</p>
+        
+        <h3 style="margin-top: 1rem;">Ejemplo de análisis de interacción en Instagram</h3>
+
+        <p>Usé este ejemplo de una publicación de Instagram de Victoria's Secret (<a href="https://www.instagram.com/p/DL492aqsyPL/" target="_blank">link de la publicación</a>) y armé una tabla de ejemplo que pueden revisar con ejemplos de respuesta aquí (<a href="https://docs.google.com/spreadsheets/d/1Et7f4Qlotxy0CSTvnTEy_ZNhN2BuhyjoaDuD9HMo4zE/edit?usp=sharing" target="_blank">link de la planilla</a>).</p>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Nombre de usuario</th>
+                    <th>Mensaje</th>
+                    <th>Tipo de mensaje (etiquetado)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>@coteneira</td><td>Hay como 5 mist en el link 😅 una BROMA</td><td>Stock / Negativo</td></tr>
+                <tr><td>@aleidis_18</td><td>Esa promoción de 2x1 aplica para qué? Consulta desde el link y aparece solo 3x2 y 5x3.</td><td>Promoción / Neutral</td></tr>
+                <tr><td>@caro.carreno</td><td>Hola 👋🏻 hice un pedido y no me llegó una de las colonias 😳</td><td>Reclamo / Negativo</td></tr>
+                <tr><td>@cami.qrga</td><td>las girls queremos el bare vainilla en promoción</td><td>Stock / Positivo</td></tr>
+                <tr><td>@arenasvaaale.aa</td><td>¿Algún código para envío gratis? 😳</td><td>Promoción / Neutral</td></tr>
+                
+            </tbody>
+        </table>
+        <img src="https://raw.githubusercontent.com/PANZERBERO/PabloAhumada/main/Sentimiento%20Victoria%C2%B4s%20Secret.png" alt="Gráfico de Sentimiento Victoria's Secret" class="graph-img">
+        <p>Se realizó una clasificación de mensajes por tipo y tono emocional, revelando que los comentarios sobre promociones fueron mayoritariamente neutros, mientras que los relacionados a stock y reclamos mostraron una mayor polarización emocional. Esta lectura permite identificar áreas críticas de mejora en la comunicación de ofertas y en la experiencia postventa.</p>
+        <p>Recomendación: Optimizar la claridad en las promociones y reforzar el soporte postventa para elevar la percepción positiva de la marca.</p>
     </section>
 
     <section class="section" id="modalidad">
@@ -319,4 +371,6 @@
         }, speed);
     </script>
 </body>
+<!-- No se encontró ninguna tabla ni columna "Nombre de Usuario" en el fragmento seleccionado. 
+Por favor, proporciona la sección de la tabla correspondiente para poder editar la columna "Nombre de Usuario". -->
 </html>
