@@ -202,6 +202,81 @@
             border: 2px solid #E91E63;
             border-radius: 5px;
         }
+        .functions-container {
+            margin: 2rem 0;
+            text-align: center;
+        }
+        .functions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        .function-card {
+            background: #FFFFFF;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #E91E63;
+            opacity: 0;
+            transform: translateY(30px) scale(0.9);
+            transition: all 0.6s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .function-card.animate {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+        .function-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s;
+        }
+        .function-card:hover::before {
+            left: 100%;
+        }
+        .function-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(233, 30, 99, 0.2);
+        }
+        .function-icon {
+            font-size: 2.5rem;
+            color: #E91E63;
+            margin-bottom: 1rem;
+        }
+        .function-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #000000;
+            margin-bottom: 0.5rem;
+        }
+        .function-description {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.4;
+        }
+        .typewriter {
+            overflow: hidden;
+            border-right: 2px solid #E91E63;
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: 0.1em;
+            animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #E91E63; }
+        }
         @media (max-width: 768px) {
             h1 {
                 font-size: 2rem;
@@ -282,6 +357,42 @@
             <div class="workflow-step">Genero reportes con insights accionables</div>
         </div>
         <p>Este método convierte cada interacción en una oportunidad de optimización, cuidando la experiencia con el mismo detalle con que se cuida una pasarela.</p>
+
+        <div class="functions-container">
+            <h3 class="typewriter">Mis funciones principales</h3>
+            <div class="functions-grid" id="functionsGrid">
+                <div class="function-card" data-delay="0">
+                    <div class="function-icon">📊</div>
+                    <div class="function-title">Análisis de Performance</div>
+                    <div class="function-description">Monitoreo métricas de engagement, alcance y conversión para optimizar estrategias en tiempo real.</div>
+                </div>
+                <div class="function-card" data-delay="200">
+                    <div class="function-icon">💬</div>
+                    <div class="function-title">Gestión SAC Integral</div>
+                    <div class="function-description">Atención personalizada en redes sociales con clasificación y derivación estratégica de consultas.</div>
+                </div>
+                <div class="function-card" data-delay="400">
+                    <div class="function-icon">🎯</div>
+                    <div class="function-title">Segmentación de Audiencias</div>
+                    <div class="function-description">Identifico patrones de comportamiento para crear mensajes más efectivos y personalizados.</div>
+                </div>
+                <div class="function-card" data-delay="600">
+                    <div class="function-icon">📈</div>
+                    <div class="function-title">Reportería Estratégica</div>
+                    <div class="function-description">Genero insights accionables que transforman datos en decisiones comerciales inteligentes.</div>
+                </div>
+                <div class="function-card" data-delay="800">
+                    <div class="function-icon">🛡️</div>
+                    <div class="function-title">Gestión de Reputación</div>
+                    <div class="function-description">Protejo y fortalezco la imagen de marca mediante monitoreo proactivo y respuesta estratégica.</div>
+                </div>
+                <div class="function-card" data-delay="1000">
+                    <div class="function-icon">⚡</div>
+                    <div class="function-title">Optimización Continua</div>
+                    <div class="function-description">Implemento mejoras basadas en análisis de tendencias y feedback de la comunidad.</div>
+                </div>
+            </div>
+        </div>
 
         <h3 style="margin-top: 1rem;">Ejemplo de análisis de interacción en Instagram</h3>
 
