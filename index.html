@@ -304,6 +304,17 @@
                 width: 30px;
                 height: 30px;
             }
+            .functions-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            .function-card {
+                margin: 0.5rem 0;
+            }
+            .typewriter {
+                font-size: 1.1rem;
+                animation: typing 2s steps(30, end), blink-caret 0.75s step-end infinite;
+            }
         }
     </style>
 </head>
@@ -467,6 +478,45 @@
                     }, index * 500);
                 }
             });
+
+            // Animación de tarjetas de funciones
+            const functionCards = document.querySelectorAll('.function-card');
+            functionCards.forEach(card => {
+                const cardTop = card.getBoundingClientRect().top;
+                if (cardTop < windowHeight - 50) {
+                    const delay = parseInt(card.dataset.delay) || 0;
+                    setTimeout(() => {
+                        card.classList.add('animate');
+                    }, delay);
+                }
+            });
+        });
+
+        // Función para animar las tarjetas de funciones
+        function animateFunctionCards() {
+            const functionCards = document.querySelectorAll('.function-card');
+            const functionsContainer = document.getElementById('functionsGrid');
+            
+            if (functionsContainer) {
+                const containerTop = functionsContainer.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (containerTop < windowHeight - 100) {
+                    functionCards.forEach(card => {
+                        if (!card.classList.contains('animate')) {
+                            const delay = parseInt(card.dataset.delay) || 0;
+                            setTimeout(() => {
+                                card.classList.add('animate');
+                            }, delay);
+                        }
+                    });
+                }
+            }
+        }
+
+        // Activar animación al cargar la página
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(animateFunctionCards, 1000);
         });
 
         const counter = document.getElementById('experience-counter');
