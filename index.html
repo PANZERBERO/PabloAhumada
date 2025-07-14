@@ -1,16 +1,377 @@
-Qué código puedo usar para hacerlo en Javascript y que se dinámico?
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portafolio de Pablo Ahumada, experto en análisis, SAC y gestión de reputación digital para marcas de moda como Victoria's Secret.">
+    <meta name="keywords" content="análisis, SAC, reputación digital, moda, marketing digital, Pablo Ahumada">
+    <meta name="author" content="Pablo Ahumada">
+    <title>Propuesta Victoria´s Secret - Pablo Ahumada</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+        body {
+            font-family: 'Poppins', sans-serif, fallback;
+            margin: 0;
+            padding: 0;
+            background-color: #FFFFFF;
+            color: #000000;
+            line-height: 1.6;
+        }
+        .header {
+            background: url('https://raw.githubusercontent.com/PANZERBERO/PabloAhumada/main/VictoriaHeader.png') no-repeat center center/cover;
+            color: #FFFFFF;
+            text-align: center;
+            padding: 3rem 2rem;
+            position: relative;
+            min-height: 50vh;
+        }
+        .header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+        }
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        .section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 1rem;
+            background: #F5F5F5;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .section.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: #E91E63;
+            color: #FFFFFF;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background: #C2185B;
+        }
+        .highlight-box {
+            background: #FFE4EC;
+            padding: 1.5rem;
+            border-left: 4px solid #E91E63;
+            margin: 1rem 0;
+        }
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        ul li {
+            margin-bottom: 0.8rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        ul li::before {
+            content: '★';
+            color: #E91E63;
+            position: absolute;
+            left: 0;
+        }
+        .skill-card {
+            display: inline-block;
+            margin: 0.5rem;
+            padding: 1rem;
+            background: #FFFFFF;
+            border-radius: 5px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        .workflow {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .workflow-step {
+            flex: 1;
+            min-width: 150px;
+            background: #FFFFFF;
+            padding: 1rem;
+            border-radius: 5px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .workflow-step.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .workflow-arrow {
+            font-size: 2rem;
+            color: #E91E63;
+            align-self: center;
+        }
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #25D366;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+            z-index: 1000;
+        }
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+        }
+        .whatsapp-btn img {
+            width: 40px;
+            height: 40px;
+        }
+        .linkedin-btn {
+            background: #E91E63;
+            color: #FFFFFF;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+        .linkedin-btn:hover {
+            background: #C2185B;
+        }
+        .data-table {
+            width: 70%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background: #FFFFFF;
+        }
+        .data-table th, .data-table td {
+            border: 1px solid #E91E63;
+            padding: 0.15rem;
+            text-align: center;
+            font-size: 0.8rem;
+        }
+        .data-table th {
+            background-color: #E91E63;
+            color: #FFFFFF;
+        }
+        .data-table tr:nth-child(even) {
+            background-color: #F5F5F5;
+        }
+        .data-table tr:hover {
+            background-color: #FFE4EC;
+        }
+        .graph-img {
+            max-width: 100%;
+            height: auto;
+            margin: 1rem 0;
+            border: 2px solid #E91E63;
+            border-radius: 5px;
+        }
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            h2 {
+                font-size: 1.2rem;
+            }
+            .section {
+                padding: 1.5rem 0.5rem;
+            }
+            .workflow {
+                flex-direction: column;
+                align-items: center;
+            }
+            .workflow-arrow {
+                display: none;
+            }
+            .whatsapp-btn {
+                width: 50px;
+                height: 50px;
+                bottom: 15px;
+                right: 15px;
+            }
+            .whatsapp-btn img {
+                width: 30px;
+                height: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <h1>La moda también se mide: visibilidad, conexión y estrategia</h1>
+            <h2>Por Pablo Ahumada</h2>
+            <p>Una marca no solo debe vestirse bien. También debe verse y sentirse bien, y eso implica más que estética: requiere confianza, cercanía y coherencia en cada interacción.</p>
+            <a href="#contact" class="btn">Contáctame ahora</a>
+        </div>
+    </header>
 
-<section class="section" id="como-trabajo">  
-    <h2>Cómo trabajo</h2>  
-    <p>Gestiono el SAC de forma ágil y ordenada:</p>  
-    <div class="workflow" id="workflow">  
-        <div class="workflow-step">Capturo cada mensaje entrante</div>  
-        <span class="workflow-arrow">→</span>  
-        <div class="workflow-step">Respondo con criterio y etiquetado estratégico</div>  
-        <span class="workflow-arrow">→</span>  
-        <div class="workflow-step">Derivo oportunidades comerciales a ventas</div>  
-        <span class="workflow-arrow">→</span>  
-        <div class="workflow-step">Derivo reclamos a servicio al cliente</div>  
-        <span class="workflow-arrow">→</span>  
-        <div class="workflow-step">Genero reportes con insights accionables</div>
+    <section class="section" id="que-ofrezco">
+        <h2>¿Qué ofrezco?</h2>
+        <p>Busco aportar valor a la marca desde un enfoque estratégico y analítico. Mi trabajo se orienta a fortalecer esa sensación de cercanía, elegancia y confianza que las audiencias suelen esperar al interactuar con una marca de lujo.</p>
+        <ul>
+            <li>Visibilidad construida a partir de datos reales.</li>
+            <li>Conexiones genuinas con la comunidad.</li>
+            <li>Reputación cuidada que genera confianza.</li>
+        </ul>
+        <p>Todo gestionado con herramientas profesionales y una mirada integral que considera cada interacción como una oportunidad.</p>
+    </section>
 
+    <section class="section" id="quien-soy">
+        <h2>¿Quién soy?</h2>
+        <img src="https://media.licdn.com/dms/image/v2/D4D03AQGKI6YtHuHIhw/profile-displayphoto-crop_800_800/B4DZfxO0GcGYAM-/0/1752098883775?e=1757548800&v=beta&t=TgMmwb2T3YN-i9V_u5qkTARteXbMEerrGjoIgmiXYfc" alt="Pablo Ahumada" style="width: 150px; border-radius: 50%; margin-bottom: 1rem;">
+        <p>Soy Pablo Ahumada, publicista con más de 15 años de experiencia en social media y marketing digital. He colaborado con marcas como General Motors, Americar, Punta Pacífica Realty y firmas reconocidas en consumo masivo como Alto del Carmen, Brooks, Derco, así como la startup Time Jobs.</p>
+        <p>Me especializo en:</p>
+        <ul>
+            <li>Análisis de datos y performance.</li>
+            <li>Gestión de SAC.</li>
+            <li>Estrategias de reputación digital.</li>
+        </ul>
+        <p>Mi trabajo busca alinear cada mensaje con la identidad de marca y convertir los datos en decisiones que sumen valor.</p>
+        <a href="https://www.linkedin.com/in/pabloahumada?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="btn linkedin-btn" target="_blank">Ver mi perfil completo en LinkedIn</a>
+    </section>
+
+    <section class="section" id="como-trabajo">
+        <h2>Cómo trabajo</h2>
+        <p>Gestiono el SAC de forma ágil y ordenada:</p>
+        <div class="workflow" id="workflow">
+            <div class="workflow-step">Capturo cada mensaje entrante</div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-step">Respondo con criterio y etiquetado estratégico</div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-step">Derivo oportunidades comerciales a ventas</div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-step">Derivo reclamos a servicio al cliente</div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-step">Genero reportes con insights accionables</div>
+        </div>
+        <p>Este método convierte cada interacción en una oportunidad de optimización, cuidando la experiencia con el mismo detalle con que se cuida una pasarela.</p>
+
+        <h3 style="margin-top: 1rem;">Ejemplo de análisis de interacción en Instagram</h3>
+
+        <p>Usé este ejemplo de una publicación de Instagram de Victoria's Secret (<a href="https://www.instagram.com/p/DL492aqsyPL/" target="_blank">link de la publicación</a>) y armé una tabla de ejemplo que pueden revisar con ejemplos de respuesta aquí (<a href="https://docs.google.com/spreadsheets/d/1Et7f4Qlotxy0CSTvnTEy_ZNhN2BuhyjoaDuD9HMo4zE/edit?usp=sharing" target="_blank">link de la planilla</a>).</p>
+        <center><table class="data-table">
+            <thead>
+                <tr>
+                    <th>Nombre de usuario</th>
+                    <th>Mensaje</th>
+                    <th>Tipo de mensaje (etiquetado)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>@coteneira</td><td>Hay como 5 mist en el link 😅 una BROMA</td><td>Stock / Negativo</td></tr>
+                <tr><td>@aleidis_18</td><td>Esa promoción de 2x1 aplica para qué? Consulta desde el link y aparece solo 3x2 y 5x3.</td><td>Promoción / Neutral</td></tr>
+                <tr><td>@caro.carreno</td><td>Hola 👋🏻 hice un pedido y no me llegó una de las colonias 😳</td><td>Reclamo / Negativo</td></tr>
+                <tr><td>@cami.qrga</td><td>las girls queremos el bare vainilla en promoción</td><td>Stock / Positivo</td></tr>
+                <tr><td>@arenasvaaale.aa</td><td>¿Algún código para envío gratis? 😳</td><td>Promoción / Neutral</td></tr>
+                
+            </tbody>
+        </table></center>
+        <center><img src="https://raw.githubusercontent.com/PANZERBERO/PabloAhumada/main/Sentimiento%20Victoria%C2%B4s%20Secret.png" alt="Gráfico de Sentimiento Victoria's Secret" class="graph-img">
+        <p>Se realizó una clasificación de mensajes por tipo y tono emocional, revelando que los comentarios sobre promociones fueron mayoritariamente neutros, mientras que los relacionados a stock y reclamos mostraron una mayor polarización emocional. Esta lectura permite identificar áreas críticas de mejora en la comunicación de ofertas y en la experiencia postventa.</p>
+        <p>Recomendación: Optimizar la claridad en las promociones y reforzar el soporte postventa para elevar la percepción positiva de la marca.</p>
+    </section>
+
+    <section class="section" id="modalidad">
+        <h2>Mi modalidad</h2>
+        <p>Trabajo de forma freelance y 100% remota, disponible de lunes a lunes, incluidos feriados. Mientras el Community Manager viste la marca con creatividad y cubre eventos, yo mantengo su esencia cuidada y su reputación impecable.</p>
+        <p>Tú das el estilo. Yo aseguro el rendimiento. Juntos, hacemos que la marca no solo se vea bien, sino que irradie confianza.</p>
+    </section>
+
+    <section class="section" id="herramientas">
+        <h2>Herramientas</h2>
+        <p>Sprout Social: precisión, análisis y eficiencia</p>
+        <ul>
+            <li>Etiquetado de campañas y productos.</li>
+            <li>Métricas de engagement por impresión y alcance orgánico.</li>
+            <li>Análisis de sentimiento y menciones clave.</li>
+            <li>Comparativas de formatos, días y temas.</li>
+        </ul>
+    </section>
+
+    <section class="section" id="victoria">
+        <h2>¿Por qué esto importa para Victoria's Secret?</h2>
+        <p>Victoria’s Secret es más que moda: es actitud. Y esa actitud se vive, comenta y transmite cada día en redes sociales.</p>
+        <p>Mi misión: que la marca no solo se vea bien. Que también se sienta bien para quien la sigue y confía en ella. La comunidad no se improvisa: se construye con estrategia, empatía y datos.</p>
+        <a href="https://wa.me/+56978542576?text=¡Hola! Quiero hablar sobre mi perfil para Victoria's Secret." class="btn" target="_blank">Contáctame por WhatsApp</a>
+    </section>
+
+    <a href="https://wa.me/+56978542576?text=¡Hola! Quiero hablar sobre mi perfil para Victoria's Secret." class="whatsapp-btn" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Icon">
+    </a>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                if (sectionTop < windowHeight - 100) {
+                    section.classList.add('active');
+                }
+            });
+
+            const workflowSteps = document.querySelectorAll('.workflow-step');
+            workflowSteps.forEach((step, index) => {
+                const stepTop = step.getBoundingClientRect().top;
+                if (stepTop < windowHeight - 100) {
+                    setTimeout(() => {
+                        step.classList.add('active');
+                    }, index * 500);
+                }
+            });
+        });
+
+        const counter = document.getElementById('experience-counter');
+        let count = 0;
+        const target = 15;
+        const speed = 100;
+        const interval = setInterval(() => {
+            if (count <= target) {
+                counter.textContent = count;
+                count++;
+            } else {
+                clearInterval(interval);
+            }
+        }, speed);
+    </script>
+</body>
+<!-- No se encontró ninguna tabla ni columna "Nombre de Usuario" en el fragmento seleccionado. 
+Por favor, proporciona la sección de la tabla correspondiente para poder editar la columna "Nombre de Usuario". -->
+</html>
