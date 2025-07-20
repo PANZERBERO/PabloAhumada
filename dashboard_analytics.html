@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📊 Dashboard Analytics - Pablo Ahumada Portfolio</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            color: #718096;
+            font-size: 1.1rem;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .stat-card .icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .stat-card .value {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 5px;
+        }
+        
+        .stat-card .label {
+            color: #718096;
+            font-weight: 500;
+        }
+        
+        .charts-section {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .chart-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        .chart-card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 20px;
+        }
+        
+        .visitors-list {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .visitor-item {
+            background: #f7fafc;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-left: 4px solid #4299e1;
+        }
+        
+        .visitor-item.active {
+            border-left-color: #48bb78;
+            background: #f0fff4;
+        }
+        
+        .visitor-info {
+            font-size: 0.9rem;
+            color: #4a5568;
+        }
+        
+        .visitor-time {
+            font-weight: 600;
+            color: #2d3748;
+        }
+        
+        .events-timeline {
+            max-height: 500px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+        
+        .event-item {
+            background: #f7fafc;
+            border-radius: 10px;
+            padding: 12px;
+            margin-bottom: 8px;
+            border-left: 3px solid #cbd5e0;
+            font-size: 0.85rem;
+        }
+        
+        .event-item.page_view { border-left-color: #4299e1; }
+        .event-item.click { border-left-color: #ed8936; }
+        .event-item.scroll_milestone { border-left-color: #38b2ac; }
+        .event-item.heartbeat { border-left-color: #48bb78; }
+        .event-item.page_exit { border-left-color: #e53e3e; }
+        
+        .event-time {
+            color: #718096;
+            font-size: 0.75rem;
+        }
+        
+        .live-indicator {
+            display: inline-flex;
+            align-items: center;
+            background: #48bb78;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+            margin-right: 8px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .refresh-btn {
+            background: #4299e1;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .refresh-btn:hover {
+            background: #3182ce;
+        }
+        
+        .no-data {
+            text-align: center;
+            color: #718096;
+            font-style: italic;
+            padding: 40px;
+        }
+        
+        .heatmap {
+            display: grid;
+            grid-template-columns: repeat(24, 1fr);
+            gap: 2px;
+            margin-top: 15px;
+        }
+        
+        .heatmap-cell {
+            aspect-ratio: 1;
+            background: #e2e8f0;
+            border-radius: 2px;
+            position: relative;
+        }
+        
+        .heatmap-cell.active-1 { background: #bee3f8; }
+        .heatmap-cell.active-2 { background: #90cdf4; }
+        .heatmap-cell.active-3 { background: #63b3ed; }
+        .heatmap-cell.active-4 { background: #4299e1; }
+        .heatmap-cell.active-5 { background: #3182ce; }
+        
+        @media (max-width: 768px) {
+            .charts-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+                <div>
+                    <h1>📊 Analytics Dashboard</h1>
+                    <p>Estadísticas en tiempo real del portafolio de Pablo Ahumada</p>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <div class="live-indicator">
+                        <div class="live-dot"></div>
+                        EN VIVO
+                    </div>
+                    <button class="refresh-btn" onclick="refreshData()">🔄 Actualizar</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="icon">👥</div>
+                <div class="value" id="totalVisitors">-</div>
+                <div class="label">Visitantes Totales</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="icon">🟢</div>
+                <div class="value" id="activeVisitors">-</div>
+                <div class="label">Visitantes Activos</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="icon">⏱️</div>
+                <div class="value" id="avgTimeOnPage">-</div>
+                <div class="label">Tiempo Promedio</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="icon">📱</div>
+                <div class="value" id="deviceTypes">-</div>
+                <div class="label">Dispositivos Móviles</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="icon">🌍</div>
+                <div class="value" id="countries">-</div>
+                <div class="label">Países</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="icon">📊</div>
+                <div class="value" id="totalEvents">-</div>
+                <div class="label">Eventos Totales</div>
+            </div>
+        </div>
+
+        <div class="charts-section">
+            <div class="chart-card">
+                <h3>📈 Actividad por Hora</h3>
+                <div class="heatmap" id="hourlyHeatmap"></div>
+                <div style="display: flex; justify-content: space-between; margin-top: 10px; font-size: 0.8rem; color: #718096;">
+                    <span>00:00</span>
+                    <span>06:00</span>
+                    <span>12:00</span>
+                    <span>18:00</span>
+                    <span>23:59</span>
+                </div>
+            </div>
+            
+            <div class="chart-card">
+                <h3>👥 Visitantes Recientes</h3>
+                <div class="visitors-list" id="visitorsList">
+                    <div class="no-data">No hay datos disponibles aún</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="chart-card">
+            <h3>⚡ Timeline de Eventos en Tiempo Real</h3>
+            <div class="events-timeline" id="eventsTimeline">
+                <div class="no-data">Esperando eventos...</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        class AnalyticsDashboard {
+            constructor() {
+                this.data = {
+                    visitors: new Map(),
+                    events: [],
+                    hourlyActivity: new Array(24).fill(0)
+                };
+                this.init();
+            }
+
+            init() {
+                this.loadStoredData();
+                this.startRealTimeUpdates();
+                this.updateDisplay();
+                
+                // Simular datos para demostración
+                this.simulateData();
+            }
+
+            loadStoredData() {
+                try {
+                    // Cargar datos del localStorage
+                    const stored = localStorage.getItem('portfolio_analytics');
+                    if (stored) {
+                        const events = JSON.parse(stored);
+                        events.forEach(event => this.processEvent(event));
+                    }
+                } catch (error) {
+                    console.error('Error cargando datos:', error);
+                }
+            }
+
+            processEvent(event) {
+                this.data.events.push(event);
+                
+                // Procesar información del visitante
+                if (event.type === 'page_view' && event.visitorInfo) {
+                    this.data.visitors.set(event.sessionId, {
+                        ...event.visitorInfo,
+                        lastSeen: new Date(event.timestamp),
+                        events: this.data.visitors.get(event.sessionId)?.events || []
+                    });
+                }
+                
+                // Actualizar actividad por hora
+                const hour = new Date(event.timestamp).getHours();
+                this.data.hourlyActivity[hour]++;
+            }
+
+            simulateData() {
+                // Simular algunos visitantes para demostración
+                const sampleEvents = [
+                    {
+                        type: 'page_view',
+                        timestamp: new Date(Date.now() - 300000).toISOString(), // 5 min ago
+                        sessionId: 'demo_session_1',
+                        visitorInfo: {
+                            userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+                            language: 'es-ES',
+                            platform: 'Win32',
+                            screenResolution: '1920x1080',
+                            timezone: 'America/Santiago',
+                            referrer: 'https://mail.google.com'
+                        }
+                    },
+                    {
+                        type: 'scroll_milestone',
+                        timestamp: new Date(Date.now() - 240000).toISOString(),
+                        sessionId: 'demo_session_1',
+                        scrollPercent: 50
+                    },
+                    {
+                        type: 'click',
+                        timestamp: new Date(Date.now() - 180000).toISOString(),
+                        sessionId: 'demo_session_1',
+                        tagName: 'A',
+                        text: 'Contactar para más detalles'
+                    }
+                ];
+
+                sampleEvents.forEach(event => this.processEvent(event));
+            }
+
+            startRealTimeUpdates() {
+                setInterval(() => {
+                    this.loadStoredData();
+                    this.updateDisplay();
+                }, 5000); // Actualizar cada 5 segundos
+            }
+
+            updateDisplay() {
+                this.updateStats();
+                this.updateVisitorsList();
+                this.updateEventsTimeline();
+                this.updateHourlyHeatmap();
+            }
+
+            updateStats() {
+                const now = Date.now();
+                const activeThreshold = 5 * 60 * 1000; // 5 minutos
+                
+                let activeVisitors = 0;
+                let totalTimeOnPage = 0;
+                let mobileCount = 0;
+                let countries = new Set();
+
+                for (let [sessionId, visitor] of this.data.visitors) {
+                    const lastSeen = new Date(visitor.lastSeen).getTime();
+                    if (now - lastSeen < activeThreshold) {
+                        activeVisitors++;
+                    }
+                    
+                    if (visitor.userAgent && visitor.userAgent.includes('Mobile')) {
+                        mobileCount++;
+                    }
+                    
+                    if (visitor.timezone) {
+                        countries.add(visitor.timezone.split('/')[0]);
+                    }
+                }
+
+                document.getElementById('totalVisitors').textContent = this.data.visitors.size;
+                document.getElementById('activeVisitors').textContent = activeVisitors;
+                document.getElementById('avgTimeOnPage').textContent = '2.5min'; // Simulado
+                document.getElementById('deviceTypes').textContent = `${Math.round((mobileCount / this.data.visitors.size) * 100) || 0}%`;
+                document.getElementById('countries').textContent = countries.size || 1;
+                document.getElementById('totalEvents').textContent = this.data.events.length;
+            }
+
+            updateVisitorsList() {
+                const container = document.getElementById('visitorsList');
+                if (this.data.visitors.size === 0) {
+                    container.innerHTML = '<div class="no-data">No hay visitantes registrados</div>';
+                    return;
+                }
+
+                const now = Date.now();
+                const activeThreshold = 5 * 60 * 1000;
+                
+                const visitorsArray = Array.from(this.data.visitors.entries())
+                    .sort(([,a], [,b]) => new Date(b.lastSeen) - new Date(a.lastSeen))
+                    .slice(0, 10);
+
+                container.innerHTML = visitorsArray.map(([sessionId, visitor]) => {
+                    const isActive = now - new Date(visitor.lastSeen).getTime() < activeThreshold;
+                    const deviceType = visitor.userAgent?.includes('Mobile') ? '📱' : '💻';
+                    const timeAgo = this.formatTimeAgo(new Date(visitor.lastSeen));
+                    
+                    return `
+                        <div class="visitor-item ${isActive ? 'active' : ''}">
+                            <div class="visitor-time">${deviceType} ${isActive ? '🟢 Activo' : '⚫ ' + timeAgo}</div>
+                            <div class="visitor-info">
+                                ${visitor.language || 'N/A'} • ${visitor.timezone || 'N/A'}<br>
+                                ${visitor.screenResolution || 'N/A'}
+                                ${visitor.referrer ? `<br>Desde: ${new URL(visitor.referrer).hostname}` : ''}
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            updateEventsTimeline() {
+                const container = document.getElementById('eventsTimeline');
+                if (this.data.events.length === 0) {
+                    container.innerHTML = '<div class="no-data">No hay eventos registrados</div>';
+                    return;
+                }
+
+                const recentEvents = this.data.events
+                    .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
+                    .slice(0, 20);
+
+                container.innerHTML = recentEvents.map(event => {
+                    const time = new Date(event.timestamp).toLocaleTimeString();
+                    let description = this.getEventDescription(event);
+                    
+                    return `
+                        <div class="event-item ${event.type}">
+                            <div>${description}</div>
+                            <div class="event-time">${time}</div>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            getEventDescription(event) {
+                switch (event.type) {
+                    case 'page_view':
+                        return '👁️ Nueva visita a la página';
+                    case 'click':
+                        return `🖱️ Click en: ${event.text?.substr(0, 30) || event.tagName}`;
+                    case 'scroll_milestone':
+                        return `📜 Scroll hasta ${event.scrollPercent}%`;
+                    case 'heartbeat':
+                        return `💓 Usuario activo (${Math.round(event.timeOnPage/1000)}s)`;
+                    case 'page_exit':
+                        return `👋 Salió de la página (${Math.round(event.timeOnPage/1000)}s total)`;
+                    case 'visibility_change':
+                        return `👀 ${event.hidden ? 'Cambió de pestaña' : 'Volvió a la pestaña'}`;
+                    default:
+                        return `⚡ ${event.type}`;
+                }
+            }
+
+            updateHourlyHeatmap() {
+                const container = document.getElementById('hourlyHeatmap');
+                const maxActivity = Math.max(...this.data.hourlyActivity);
+                
+                container.innerHTML = this.data.hourlyActivity.map((activity, hour) => {
+                    let className = 'heatmap-cell';
+                    if (activity > 0) {
+                        const intensity = Math.ceil((activity / maxActivity) * 5);
+                        className += ` active-${intensity}`;
+                    }
+                    
+                    return `<div class="${className}" title="Hora ${hour}:00 - ${activity} eventos"></div>`;
+                }).join('');
+            }
+
+            formatTimeAgo(date) {
+                const seconds = Math.floor((Date.now() - date.getTime()) / 1000);
+                
+                if (seconds < 60) return 'hace un momento';
+                if (seconds < 3600) return `hace ${Math.floor(seconds / 60)}min`;
+                if (seconds < 86400) return `hace ${Math.floor(seconds / 3600)}h`;
+                return `hace ${Math.floor(seconds / 86400)}d`;
+            }
+        }
+
+        // Función global para refrescar datos
+        function refreshData() {
+            location.reload();
+        }
+
+        // Inicializar dashboard
+        const dashboard = new AnalyticsDashboard();
+        
+        // Hacer disponible globalmente
+        window.analyticsDashboard = dashboard;
+        
+        console.log('📊 Dashboard de Analytics iniciado');
+        console.log('💡 Tip: Abre la consola del navegador en el portafolio para ver los eventos en tiempo real');
+    </script>
+</body>
+</html>

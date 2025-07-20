@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portafolio de Pablo Ahumada, experto en análisis, SAC y gestión de reputación digital para marcas de moda como Victoria's Secret.">
+    <meta name="keywords" content="análisis, SAC, reputación digital, moda, marketing digital, Pablo Ahumada">
+    <meta name="author" content="Pablo Ahumada">
+    <title>Propuesta Victoria´s Secret - Pablo Ahumada</title>
+    
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX'); // Reemplaza con tu ID real
+    </script>
+    
+    <!-- Sistema de Tracking Personalizado -->
+    <script>
+        // Configuración del tracking
+        const TRACKING_CONFIG = {
+            webhookUrl: 'https://httpbin.org/post', // Cambiar por tu webhook real
+            sessionId: Date.now() + Math.random().toString(36).substr(2, 9),
+            startTime: Date.now()
+        };
+
+        // Clase para manejo de analytics
+        class PortfolioAnalytics {
+            constructor() {
+                this.events = [];
+                this.startTime = Date.now();
+                this.visitorInfo = this.getVisitorInfo();
+                this.setupEventListeners();
+                this.trackPageView();
+                this.startHeartbeat();
+            }
+
+            getVisitorInfo() {
+                return {
+                    userAgent: navigator.userAgent,
+                    language: navigator.language,
+                    platform: navigator.platform,
+                    screenResolution: `${screen.width}x${screen.height}`,
+                    viewportSize: `${window.innerWidth}x${window.innerHeight}`,
+                    timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+                    referrer: document.referrer,
+                    url: window.location.href,
+                    timestamp: new Date().toISOString(),
+                    sessionId: TRACKING_CONFIG.sessionId
+                };
+            }
+
+            trackEvent(eventType, data = {}) {
+                const event = {
+                    type: eventType,
+                    timestamp: new Date().toISOString(),
+                    sessionId: TRACKING_CONFIG.sessionId,
+                    timeOnPage: Date.now() - this.startTime,
+                    ...data
+                };
+                
+                this.events.push(event);
+                this.sendEvent(event);
+                
+                // Mostrar en consola para debug
+                console.log('📊 Evento trackeado:', event);
+            }
+
+            trackPageView() {
+                this.trackEvent('page_view', {
+                    title: document.title,
+                    visitorInfo: this.visitorInfo
+                });
+            }
+
+            setupEventListeners() {
+                // Tracking de scroll
+                let maxScroll = 0;
+                window.addEventListener('scroll', () => {
+                    const scrollPercent = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+                    if (scrollPercent > maxScroll) {
+                        maxScroll = scrollPercent;
+                        if (scrollPercent % 25 === 0) { // Track cada 25%
+                            this.trackEvent('scroll_milestone', { scrollPercent });
+                        }
+                    }
+                });
+
+                // Tracking de clicks
+                document.addEventListener('click', (e) => {
+                    const element = e.target;
+                    const elementInfo = {
+                        tagName: element.tagName,
+                        className: element.className,
+                        id: element.id,
+                        text: element.textContent?.substr(0, 100),
+                        href: element.href
+                    };
+                    this.trackEvent('click', elementInfo);
+                });
+
+                // Tracking de tiempo en página
+                window.addEventListener('beforeunload', () => {
+                    const timeOnPage = Date.now() - this.startTime;
+                    this.trackEvent('page_exit', { 
+                        timeOnPage,
+                        maxScrollPercent: maxScroll
+                    });
+                });
+
+                // Tracking de focus/blur (si cambia de pestaña)
+                document.addEventListener('visibilitychange', () => {
+                    this.trackEvent('visibility_change', {
+                        hidden: document.hidden,
+                        timeOnPage: Date.now() - this.startTime
+                    });
+                });
+
+                // Tracking de mouse movement (sampling)
+                let mouseMoveCount = 0;
+                document.addEventListener('mousemove', () => {
+                    mouseMoveCount++;
+                    if (mouseMoveCount % 100 === 0) { // Sample cada 100 movimientos
+                        this.trackEvent('mouse_activity', { moveCount: mouseMoveCount });
+                    }
+                });
+            }
+
+            startHeartbeat() {
+                // Envía señal cada 30 segundos para tracking de tiempo real
+                setInterval(() => {
+                    this.trackEvent('heartbeat', {
+                        timeOnPage: Date.now() - this.startTime,
+                        eventsCount: this.events.length
+                    });
+                }, 30000);
+            }
+
+            async sendEvent(event) {
+                try {
+                    // Intentar enviar a webhook personalizado
+                    await fetch(TRACKING_CONFIG.webhookUrl, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            portfolio_event: event,
+                            visitor: this.visitorInfo
+                        })
+                    });
+                } catch (error) {
+                    console.log('📊 Error enviando evento:', error);
+                    // Fallback: guardar en localStorage
+                    this.saveToLocalStorage(event);
+                }
+            }
+
+            saveToLocalStorage(event) {
+                const stored = JSON.parse(localStorage.getItem('portfolio_analytics') || '[]');
+                stored.push(event);
+                localStorage.setItem('portfolio_analytics', JSON.stringify(stored.slice(-50))); // Mantener últimos 50
+            }
+
+            // Método para obtener estadísticas
+            getStats() {
+                return {
+                    totalEvents: this.events.length,
+                    timeOnPage: Date.now() - this.startTime,
+                    visitorInfo: this.visitorInfo,
+                    events: this.events
+                };
+            }
+        }
+
+        // Inicializar analytics cuando cargue la página
+        let analytics;
+        window.addEventListener('DOMContentLoaded', () => {
+            analytics = new PortfolioAnalytics();
+            
+            // Hacer disponible globalmente para debug
+            window.portfolioAnalytics = analytics;
+        });
+    </script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #FFFFFF;
+            color: #000000;
+            line-height: 1.6;
+        }
+        
+        /* Indicador de tracking discreto */
+        .tracking-indicator {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 10px;
+            height: 10px;
+            background: #4CAF50;
+            border-radius: 50%;
+            z-index: 1000;
+            animation: pulse 2s infinite;
+            opacity: 0.7;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        
+        .header {
+            background: url('https://raw.githubusercontent.com/PANZERBERO/PabloAhumada/main/VictoriaHeader.png') no-repeat center center/cover;
+            color: #FFFFFF;
+            text-align: center;
+            padding: 3rem 2rem;
+            position: relative;
+            min-height: 50vh;
+        }
+        
+        .header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+        }
+        
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 1rem;
+            background: #F5F5F5;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .section.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: #E91E63;
+            color: #FFFFFF;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        
+        .btn:hover {
+            background: #C2185B;
+        }
+        
+        .highlight-box {
+            background: #FFE4EC;
+            padding: 1.5rem;
+            border-left: 4px solid #E91E63;
+            margin: 1rem 0;
+        }
+        
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        ul li {
+            margin-bottom: 0.8rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        ul li::before {
+            content: '★';
+            color: #E91E63;
+            position: absolute;
+            left: 0;
+        }
+
+        /* Panel de estadísticas oculto (para debug) */
+        .debug-panel {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-family: monospace;
+            display: none;
+            z-index: 9999;
+            max-width: 300px;
+        }
+        
+        .debug-panel.show {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.2rem; }
+            .section { padding: 2rem 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Indicador discreto de tracking activo -->
+    <div class="tracking-indicator" title="Tracking activo"></div>
+    
+    <!-- Panel de debug (oculto por defecto) -->
+    <div class="debug-panel" id="debugPanel">
+        <div><strong>📊 Analytics Debug</strong></div>
+        <div>Sesión: <span id="sessionId"></span></div>
+        <div>Tiempo: <span id="timeOnPage">0</span>s</div>
+        <div>Eventos: <span id="eventCount">0</span></div>
+        <div>Último evento: <span id="lastEvent">-</span></div>
+    </div>
+
+    <header class="header">
+        <div class="header-content">
+            <h1>Pablo Ahumada</h1>
+            <h2>Propuesta Estratégica para Victoria's Secret</h2>
+            <p>Especialista en Análisis, SAC y Gestión de Reputación Digital</p>
+        </div>
+    </header>
+
+    <main>
+        <section class="section active">
+            <h2>🎯 Propuesta de Valor</h2>
+            <div class="highlight-box">
+                <p><strong>Transformar la experiencia del cliente de Victoria's Secret a través de análisis avanzado y gestión estratégica de la reputación digital.</strong></p>
+            </div>
+            <p>Mi enfoque combina análisis de datos profundo con estrategias de customer service de clase mundial para crear experiencias memorables que fortalezcan la marca y generen lealtad duradera.</p>
+        </section>
+
+        <section class="section">
+            <h2>📊 Análisis y Diagnóstico</h2>
+            <ul>
+                <li><strong>Auditoría completa de touchpoints digitales</strong> - Mapeo de todos los puntos de contacto del cliente</li>
+                <li><strong>Análisis de sentiment en redes sociales</strong> - Monitoreo 24/7 de menciones y percepciones</li>
+                <li><strong>Benchmarking competitivo</strong> - Análisis comparativo con marcas líderes en el sector</li>
+                <li><strong>Identificación de pain points</strong> - Detección de fricciones en el customer journey</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>🔧 Estrategia SAC (Servicio al Cliente)</h2>
+            <ul>
+                <li><strong>Implementación de sistema omnicanal</strong> - Experiencia consistente en todos los canales</li>
+                <li><strong>Automatización inteligente</strong> - Chatbots con IA para resolución rápida de consultas</li>
+                <li><strong>Capacitación especializada del equipo</strong> - Training en productos de lujo y atención premium</li>
+                <li><strong>Métricas de excelencia</strong> - KPIs enfocados en satisfacción y retención</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>🛡️ Gestión de Reputación Digital</h2>
+            <ul>
+                <li><strong>Monitoreo proactivo de marca</strong> - Alertas tempranas ante crisis potenciales</li>
+                <li><strong>Gestión de crisis digital</strong> - Protocolos de respuesta rápida y efectiva</li>
+                <li><strong>Amplificación de contenido positivo</strong> - Estrategias para potenciar testimonios favorables</li>
+                <li><strong>SEO de reputación</strong> - Optimización de resultados de búsqueda de marca</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>📈 Resultados Esperados</h2>
+            <div class="highlight-box">
+                <ul>
+                    <li><strong>+25% en satisfacción del cliente</strong> en los primeros 6 meses</li>
+                    <li><strong>-40% en tiempo de resolución</strong> de consultas y reclamos</li>
+                    <li><strong>+30% en sentiment positivo</strong> en redes sociales</li>
+                    <li><strong>+15% en retención de clientes</strong> premium</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>🚀 Implementación</h2>
+            <p>Propongo un roadmap de implementación de <strong>90 días</strong> dividido en 3 fases:</p>
+            <ul>
+                <li><strong>Fase 1 (30 días):</strong> Auditoría y diagnóstico completo</li>
+                <li><strong>Fase 2 (30 días):</strong> Implementación de herramientas y procesos</li>
+                <li><strong>Fase 3 (30 días):</strong> Optimización y escalamiento</li>
+            </ul>
+            
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="mailto:pablo.ahumada@email.com?subject=Propuesta Victoria's Secret - Interés" class="btn">
+                    📧 Contactar para más detalles
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer style="background: #333; color: white; text-align: center; padding: 2rem;">
+        <p>&copy; 2024 Pablo Ahumada - Especialista en Customer Experience y Reputación Digital</p>
+        <p>📧 pablo.ahumada@email.com | 📱 +56 9 XXXX XXXX | 💼 LinkedIn: /in/pabloahumada</p>
+    </footer>
+
+    <!-- Script para mostrar debug panel (doble click en indicador) -->
+    <script>
+        document.querySelector('.tracking-indicator').addEventListener('dblclick', () => {
+            const panel = document.getElementById('debugPanel');
+            panel.classList.toggle('show');
+        });
+
+        // Actualizar panel de debug cada segundo
+        setInterval(() => {
+            if (window.portfolioAnalytics && document.getElementById('debugPanel').classList.contains('show')) {
+                const stats = window.portfolioAnalytics.getStats();
+                document.getElementById('sessionId').textContent = TRACKING_CONFIG.sessionId.substr(-8);
+                document.getElementById('timeOnPage').textContent = Math.round(stats.timeOnPage / 1000);
+                document.getElementById('eventCount').textContent = stats.totalEvents;
+                document.getElementById('lastEvent').textContent = stats.events[stats.events.length - 1]?.type || '-';
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
