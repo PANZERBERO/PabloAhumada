@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portafolio avanzado de Pablo Ahumada con gráficos interactivos y animaciones modernas">
+    <meta name="keywords" content="análisis, SAC, reputación digital, moda, marketing digital, Pablo Ahumada, animaciones">
+    <meta name="author" content="Pablo Ahumada">
+    <title>Propuesta Avanzada Victoria's Secret - Pablo Ahumada</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;700&display=swap');
+        
+        :root {
+            --primary-color: #E91E63;
+            --secondary-color: #C2185B;
+            --accent-color: #FF6B9D;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --gradient-pink: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            --dark-bg: #1a1a2e;
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --text-light: #666;
+            --shadow-light: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --shadow-heavy: 0 20px 60px rgba(0, 0, 0, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+            background: #000;
+            color: #333;
+        }
+
+        /* Particle Background */
+        .particles-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: var(--gradient-1);
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        /* Advanced Header */
+        .header {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gradient-pink);
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://raw.githubusercontent.com/PANZERBERO/PabloAhumada/main/VictoriaHeader.png') no-repeat center center/cover;
+            opacity: 0.3;
+            animation: parallaxBg 20s ease-in-out infinite;
+        }
+
+        @keyframes parallaxBg {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 800px;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: var(--shadow-heavy);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #fff, #ff6b9d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: textGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes textGlow {
+            from { text-shadow: 0 0 20px rgba(255, 107, 157, 0.5); }
+            to { text-shadow: 0 0 40px rgba(255, 107, 157, 0.8); }
+        }
+
+        .header h2 {
+            font-size: 1.8rem;
+            color: #fff;
+            margin-bottom: 1.5rem;
+            animation: slideInLeft 1s ease-out 0.5s both;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            animation: slideInRight 1s ease-out 1s both;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Advanced Buttons */
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--gradient-2);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-light);
+            animation: bounceIn 1s ease-out 1.5s both;
+        }
+
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+            70% {
+                transform: scale(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-heavy);
+        }
+
+        /* Advanced Sections */
+        .section {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            background: var(--card-bg);
+            margin-bottom: 2rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-light);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .section.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-2);
+            border-radius: 20px 20px 0 0;
+        }
+
+        .section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--gradient-2);
+            transition: width 0.8s ease;
+        }
+
+        .section.active h2::after {
+            width: 100%;
+        }
+
+        /* Interactive Cards */
+        .skill-card {
+            display: inline-block;
+            margin: 1rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+            border-radius: 15px;
+            box-shadow: var(--shadow-light);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-3);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .skill-card:hover::before {
+            opacity: 0.1;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px) rotateX(5deg);
+            box-shadow: var(--shadow-heavy);
+        }
+
+        /* Advanced Workflow */
+        .workflow {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+            perspective: 1000px;
+        }
+
+        .workflow-step {
+            background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: var(--shadow-light);
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: rotateY(90deg);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .workflow-step.active {
+            opacity: 1;
+            transform: rotateY(0deg);
+        }
+
+        .workflow-step::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-2);
+        }
+
+        .workflow-step:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: var(--shadow-heavy);
+        }
+
+        /* Interactive Data Visualization */
+        .data-visualization {
+            margin: 3rem 0;
+            padding: 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            color: #fff;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 300px;
+            margin: 2rem 0;
+        }
+
+        .chart-bar {
+            position: absolute;
+            bottom: 0;
+            background: linear-gradient(to top, #ff6b9d, #ff9a9e);
+            border-radius: 10px 10px 0 0;
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            opacity: 0;
+            transform: scaleY(0);
+        }
+
+        .chart-bar.animate {
+            opacity: 1;
+            transform: scaleY(1);
+        }
+
+        .chart-bar::before {
+            content: attr(data-value);
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #fff;
+            font-weight: 600;
+        }
+
+        /* Enhanced Table */
+        .data-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 2rem 0;
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow-light);
+        }
+
+        .data-table th {
+            background: var(--gradient-2);
+            color: #fff;
+            padding: 1rem;
+            font-weight: 600;
+            position: relative;
+        }
+
+        .data-table td {
+            padding: 1rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .data-table tr:hover td {
+            background: rgba(233, 30, 99, 0.1);
+            transform: scale(1.02);
+        }
+
+        /* Floating Elements */
+        .floating-icon {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.1;
+            animation: floatRandom 8s ease-in-out infinite;
+        }
+
+        @keyframes floatRandom {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
+        }
+
+        /* Progress Bars */
+        .progress-container {
+            margin: 2rem 0;
+        }
+
+        .progress-bar {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            height: 10px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--gradient-2);
+            border-radius: 50px;
+            width: 0%;
+            transition: width 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+        }
+
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* WhatsApp Button Enhanced */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-heavy);
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            z-index: 1000;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.2) rotate(10deg);
+            box-shadow: var(--shadow-heavy);
+        }
+
+        /* Loading Animation */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-overlay.hide {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top: 3px solid #fff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2.5rem; }
+            .header h2 { font-size: 1.4rem; }
+            .section { padding: 2rem 1rem; margin-bottom: 1rem; }
+            .workflow { grid-template-columns: 1fr; }
+            .skill-card { margin: 0.5rem; padding: 1rem; }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--gradient-2);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Particle Background -->
+    <div class="particles-container" id="particles"></div>
+
+    <!-- Enhanced Header -->
+    <header class="header">
+        <div class="floating-icon" style="top: 20%; left: 10%;">✨</div>
+        <div class="floating-icon" style="top: 60%; right: 15%;">💎</div>
+        <div class="floating-icon" style="top: 30%; right: 30%;">🌟</div>
+        
+        <div class="header-content">
+            <h1>La moda también se mide: visibilidad, conexión y estrategia</h1>
+            <h2>Por Pablo Ahumada</h2>
+            <p>Una marca no solo debe vestirse bien. También debe verse y sentirse bien, y eso implica más que estética: requiere confianza, cercanía y coherencia en cada interacción.</p>
+            <a href="#contact" class="btn">Contáctame ahora</a>
+        </div>
+    </header>
+
+    <!-- Enhanced Sections -->
+    <section class="section" id="que-ofrezco">
+        <h2>¿Qué ofrezco?</h2>
+        <p>Busco aportar valor a la marca desde un enfoque estratégico y analítico. Mi trabajo se orienta a fortalecer esa sensación de cercanía, elegancia y confianza que las audiencias suelen esperar al interactuar con una marca de lujo.</p>
+        
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" data-width="95"></div>
+            </div>
+            <p>Visibilidad construida a partir de datos reales - 95%</p>
+        </div>
+        
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" data-width="88"></div>
+            </div>
+            <p>Conexiones genuinas con la comunidad - 88%</p>
+        </div>
+        
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" data-width="92"></div>
+            </div>
+            <p>Reputación cuidada que genera confianza - 92%</p>
+        </div>
+        
+        <p>Todo gestionado con herramientas profesionales y una mirada integral que considera cada interacción como una oportunidad.</p>
+    </section>
+
+    <section class="section" id="quien-soy">
+        <h2>¿Quién soy?</h2>
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <img src="https://media.licdn.com/dms/image/v2/D4D03AQGKI6YtHuHIhw/profile-displayphoto-crop_800_800/B4DZfxO0GcGYAM-/0/1752098883775?e=1757548800&v=beta&t=TgMmwb2T3YN-i9V_u5qkTARteXbMEerrGjoIgmiXYfc" 
+                 alt="Pablo Ahumada" 
+                 style="width: 200px; height: 200px; border-radius: 50%; border: 4px solid var(--primary-color); box-shadow: var(--shadow-heavy); transition: transform 0.3s ease;"
+                 onmouseover="this.style.transform='scale(1.1) rotate(5deg)'"
+                 onmouseout="this.style.transform='scale(1) rotate(0deg)'">
+        </div>
+        <p>Soy Pablo Ahumada, publicista con más de 15 años de experiencia en social media y marketing digital. He colaborado con marcas como General Motors, Americar, Punta Pacífica Realty y firmas reconocidas en consumo masivo como Alto del Carmen, Brooks, Derco, así como la startup Time Jobs.</p>
+        
+        <div class="skill-card">
+            <h3>📊 Análisis de datos y performance</h3>
+            <p>Transformo métricas en insights accionables</p>
+        </div>
+        
+        <div class="skill-card">
+            <h3>🎯 Gestión de SAC</h3>
+            <p>Atención personalizada y estratégica</p>
+        </div>
+        
+        <div class="skill-card">
+            <h3>🛡️ Estrategias de reputación digital</h3>
+            <p>Protección y fortalecimiento de marca</p>
+        </div>
+        
+        <p>Mi trabajo busca alinear cada mensaje con la identidad de marca y convertir los datos en decisiones que sumen valor.</p>
+        <a href="https://www.linkedin.com/in/pabloahumada?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="btn" target="_blank">Ver mi perfil completo en LinkedIn</a>
+    </section>
+
+    <section class="section" id="como-trabajo">
+        <h2>Cómo trabajo</h2>
+        <p>Gestiono el SAC de forma ágil y ordenada:</p>
+        
+        <div class="workflow" id="workflow">
+            <div class="workflow-step">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">📥</div>
+                <h3>Capturo</h3>
+                <p>Cada mensaje entrante</p>
+            </div>
+            <div class="workflow-step">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">🏷️</div>
+                <h3>Respondo</h3>
+                <p>Con criterio y etiquetado estratégico</p>
+            </div>
+            <div class="workflow-step">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">💼</div>
+                <h3>Derivo</h3>
+                <p>Oportunidades comerciales a ventas</p>
+            </div>
+            <div class="workflow-step">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">🛠️</div>
+                <h3>Gestiono</h3>
+                <p>Reclamos a servicio al cliente</p>
+            </div>
+            <div class="workflow-step">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">📈</div>
+                <h3>Genero</h3>
+                <p>Reportes con insights accionables</p>
+            </div>
+        </div>
+        
+        <p>Este método convierte cada interacción en una oportunidad de optimización, cuidando la experiencia con el mismo detalle con que se cuida una pasarela.</p>
+
+        <h3 style="margin-top: 2rem;">Análisis Interactivo de Instagram</h3>
+        
+        <div class="data-visualization">
+            <h4>Distribución de Sentimientos en Comentarios</h4>
+            <div class="chart-container" id="sentimentChart">
+                <div class="chart-bar" data-value="45%" style="left: 10%; width: 15%; height: 45%;"></div>
+                <div class="chart-bar" data-value="30%" style="left: 30%; width: 15%; height: 30%;"></div>
+                <div class="chart-bar" data-value="25%" style="left: 50%; width: 15%; height: 25%;"></div>
+            </div>
+            <div style="display: flex; justify-content: space-around; margin-top: 1rem;">
+                <span>😊 Positivo</span>
+                <span>😐 Neutral</span>
+                <span>😔 Negativo</span>
+            </div>
+        </div>
+
+        <p>Usé este ejemplo de una publicación de Instagram de Victoria's Secret (<a href="https://www.instagram.com/p/DL492aqsyPL/" target="_blank" style="color: #ff6b9d;">link de la publicación</a>) y armé una tabla de ejemplo que pueden revisar con ejemplos de respuesta aquí (<a href="https://docs.google.com/spreadsheets/d/1Et7f4Qlotxy0CSTvnTEy_ZNhN2BuhyjoaDuD9HMo4zE/edit?usp=sharing" target="_blank" style="color: #ff6b9d;">link de la planilla</a>).</p>
+        
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Usuario</th>
+                    <th>Mensaje</th>
+                    <th>Tipo</th>
+                    <th>Sentimiento</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@coteneira</td>
+                    <td>Hay como 5 mist en el link 😅 una BROMA</td>
+                    <td>Stock</td>
+                    <td><span style="color: #f44336;">Negativo</span></td>
+                </tr>
+                <tr>
+                    <td>@aleidis_18</td>
+                    <td>Esa promoción de 2x1 aplica para qué?</td>
+                    <td>Promoción</td>
+                    <td><span style="color: #ff9800;">Neutral</span></td>
+                </tr>
+                <tr>
+                    <td>@caro.carreno</td>
+                    <td>Hola 👋🏻 hice un pedido y no me llegó</td>
+                    <td>Reclamo</td>
+                    <td><span style="color: #f44336;">Negativo</span></td>
+                </tr>
+                <tr>
+                    <td>@cami.qrga</td>
+                    <td>las girls queremos el bare vainilla</td>
+                    <td>Stock</td>
+                    <td><span style="color: #4caf50;">Positivo</span></td>
+                </tr>
+                <tr>
+                    <td>@arenasvaaale.aa</td>
+                    <td>¿Algún código para envío gratis? 😳</td>
+                    <td>Promoción</td>
+                    <td><span style="color: #ff9800;">Neutral</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div style="text-align: center; margin: 2rem 0;">
+            <img src="https://raw.githubusercontent.com/PANZERBERO/PabloAhumada/main/Sentimiento%20Victoria%C2%B4s%20Secret.png" 
+                 alt="Gráfico de Sentimiento Victoria's Secret" 
+                 style="max-width: 100%; height: auto; border-radius: 15px; box-shadow: var(--shadow-heavy);">
+        </div>
+        
+        <div class="highlight-box" style="background: linear-gradient(135deg, #ffe4ec 0%, #ffd1dc 100%); border-left: 4px solid var(--primary-color); padding: 2rem; border-radius: 15px; margin: 2rem 0;">
+            <p><strong>Insight clave:</strong> Se realizó una clasificación de mensajes por tipo y tono emocional, revelando que los comentarios sobre promociones fueron mayoritariamente neutros, mientras que los relacionados a stock y reclamos mostraron una mayor polarización emocional.</p>
+            <p><strong>Recomendación:</strong> Optimizar la claridad en las promociones y reforzar el soporte postventa para elevar la percepción positiva de la marca.</p>
+        </div>
+    </section>
+
+    <section class="section" id="modalidad">
+        <h2>Mi modalidad</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin: 2rem 0;">
+            <div class="skill-card">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">🏠</div>
+                <h3>100% Remoto</h3>
+                <p>Trabajo desde cualquier lugar con la misma calidad</p>
+            </div>
+            <div class="skill-card">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">⏰</div>
+                <h3>24/7 Disponible</h3>
+                <p>Lunes a lunes, incluidos feriados</p>
+            </div>
+            <div class="skill-card">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">🎨</div>
+                <h3>Complemento Perfecto</h3>
+                <p>Mientras el CM crea, yo optimizo y analizo</p>
+            </div>
+        </div>
+        <p>Tú das el estilo. Yo aseguro el rendimiento. Juntos, hacemos que la marca no solo se vea bien, sino que irradie confianza.</p>
+    </section>
+
+    <section class="section" id="herramientas">
+        <h2>Herramientas</h2>
+        <div class="skill-card" style="width: 100%; margin: 0;">
+            <h3>🚀 Sprout Social: precisión, análisis y eficiencia</h3>
+            <ul style="list-style: none; padding: 0;">
+                <li style="margin: 1rem 0; padding-left: 2rem; position: relative;">
+                    <span style="position: absolute; left: 0; color: var(--primary-color);">🏷️</span>
+                    Etiquetado de campañas y productos
+                </li>
+                <li style="margin: 1rem 0; padding-left: 2rem; position: relative;">
+                    <span style="position: absolute; left: 0; color: var(--primary-color);">📊</span>
+                    Métricas de engagement por impresión y alcance orgánico
+                </li>
+                <li style="margin: 1rem 0; padding-left: 2rem; position: relative;">
+                    <span style="position: absolute; left: 0; color: var(--primary-color);">💭</span>
+                    Análisis de sentimiento y menciones clave
+                </li>
+                <li style="margin: 1rem 0; padding-left: 2rem; position: relative;">
+                    <span style="position: absolute; left: 0; color: var(--primary-color);">📈</span>
+                    Comparativas de formatos, días y temas
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="section" id="victoria">
+        <h2>¿Por qué esto importa para Victoria's Secret?</h2>
+        <div style="background: var(--gradient-pink); padding: 3rem; border-radius: 20px; text-align: center; margin: 2rem 0;">
+            <div style="font-size: 4rem; margin-bottom: 1rem;">👑</div>
+            <h3 style="color: var(--primary-color); margin-bottom: 1rem;">Victoria's Secret es más que moda: es actitud</h3>
+            <p style="font-size: 1.2rem; color: #666;">Y esa actitud se vive, comenta y transmite cada día en redes sociales.</p>
+        </div>
+        
+        <p><strong>Mi misión:</strong> que la marca no solo se vea bien. Que también se sienta bien para quien la sigue y confía en ella. La comunidad no se improvisa: se construye con estrategia, empatía y datos.</p>
+        
+        <div style="text-align: center; margin: 3rem 0;">
+            <a href="https://wa.me/+56978542576?text=¡Hola! Quiero hablar sobre mi perfil para Victoria's Secret." class="btn" target="_blank">
+                Contáctame por WhatsApp
+            </a>
+        </div>
+    </section>
+
+    <!-- Enhanced WhatsApp Button -->
+    <a href="https://wa.me/+56978542576?text=¡Hola! Quiero hablar sobre mi perfil para Victoria's Secret." class="whatsapp-btn" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width: 40px; height: 40px;">
+    </a>
+
+    <script>
+        // Loading Screen
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loadingOverlay').classList.add('hide');
+            }, 1500);
+        });
+
+        // Particle System
+        function createParticles() {
+            const container = document.getElementById('particles');
+            const particleCount = 50;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.width = Math.random() * 4 + 2 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                container.appendChild(particle);
+            }
+        }
+
+        // Scroll Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    
+                    // Animate progress bars
+                    const progressBars = entry.target.querySelectorAll('.progress-fill');
+                    progressBars.forEach(bar => {
+                        const width = bar.getAttribute('data-width');
+                        setTimeout(() => {
+                            bar.style.width = width;
+                        }, 300);
+                    });
+
+                    // Animate workflow steps
+                    const workflowSteps = entry.target.querySelectorAll('.workflow-step');
+                    workflowSteps.forEach((step, index) => {
+                        setTimeout(() => {
+                            step.classList.add('active');
+                        }, index * 200);
+                    });
+
+                    // Animate chart bars
+                    const chartBars = entry.target.querySelectorAll('.chart-bar');
+                    chartBars.forEach((bar, index) => {
+                        setTimeout(() => {
+                            bar.classList.add('animate');
+                        }, index * 300);
+                    });
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Parallax effect for header
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const header = document.querySelector('.header');
+            if (header) {
+                header.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Interactive table rows
+        document.querySelectorAll('.data-table tr').forEach(row => {
+            row.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.02)';
+                this.style.zIndex = '10';
+            });
+            
+            row.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+                this.style.zIndex = '1';
+            });
+        });
+
+        // Initialize particles
+        createParticles();
+
+        // Add floating animation to skill cards
+        document.querySelectorAll('.skill-card').forEach((card, index) => {
+            card.style.animationDelay = (index * 0.2) + 's';
+            card.style.animation = 'float 6s ease-in-out infinite';
+        });
+
+        // Dynamic background color change based on scroll
+        window.addEventListener('scroll', () => {
+            const scrollPercent = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+            const hue = Math.floor(scrollPercent * 360);
+            document.querySelector('.particles-container').style.background = 
+                `linear-gradient(135deg, hsl(${hue}, 70%, 60%) 0%, hsl(${hue + 60}, 70%, 70%) 100%)`;
+        });
+
+        // Add ripple effect to buttons
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.cssText = `
+                    position: absolute;
+                    width: ${size}px;
+                    height: ${size}px;
+                    left: ${x}px;
+                    top: ${y}px;
+                    background: rgba(255, 255, 255, 0.3);
+                    border-radius: 50%;
+                    transform: scale(0);
+                    animation: ripple 0.6s ease-out;
+                    pointer-events: none;
+                `;
+                
+                this.style.position = 'relative';
+                this.style.overflow = 'hidden';
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+
+        // Add CSS for ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(2);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
